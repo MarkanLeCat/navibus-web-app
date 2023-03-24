@@ -1,18 +1,24 @@
 <?php
 
-class JoinTasksLapsesModel extends Model {
+class JoinTasksModel extends Model {
 
   private $taskid;
   private $title;
   private $description;
+  private $shipid;
   private $ship;
+  private $lapseid;
   private $lapse;
+  private $categoryid;
   private $category;
+  private $statusid;
   private $status;
+  private $userid;
   private $userfirstname;
   private $userlastname;
-  private $userposition;
+  private $hoursid;
   private $hours;
+  private $usercreatedid;
   private $usercreatedname;
   private $usercreatedlastname;
   private $createdat;
@@ -34,7 +40,7 @@ class JoinTasksLapsesModel extends Model {
       ]);
 
       while($p = $query->fetch(PDO::FETCH_ASSOC)){
-        $item = new JoinTasksLapsesModel();
+        $item = new JoinTasksModel();
         $item->from($p);
 
         array_push($items, $item);
@@ -50,14 +56,21 @@ class JoinTasksLapsesModel extends Model {
     $this->taskid = $array['id'];
     $this->title = $array['title'];
     $this->description = $array['description'];
+    $this->shipid = $array['shipid'];
     $this->ship = $array['ship'];
+    $this->lapseid = $array['lapseid'];
     $this->lapse = $array['lapse'];
+    $this->categoryid = $array['categoryid'];
     $this->category = $array['category'];
+    $this->statusid = $array['statusid'];
     $this->status = $array['status'];
+    $this->userid = $array['userid'];
     $this->userfirstname = $array['userfirstname'];
     $this->userlastname = $array['userlastname'];
     $this->userposition = $array['position'];
+    $this->hoursid = $array['hoursid'];
     $this->hours = $array['hours'];
+    $this->usercreatedid = $array['createdid'];
     $this->usercreatedname = $array['createdname'];
     $this->usercreatedlastname = $array['createdlastname'];
     $this->createdat = $array['createdat'];
@@ -69,14 +82,21 @@ class JoinTasksLapsesModel extends Model {
     $array['id'] = $this->taskid;
     $array['title'] = $this->title;
     $array['description'] = $this->description;
+    $array['shipid'] = $this->shipid;
     $array['ship'] = $this->ship;
+    $array['lapseid'] = $this->lapseid;
     $array['lapse'] = $this->lapse;
+    $array['categoryid'] = $this->categoryid;
     $array['category'] = $this->category;
+    $array['statusid'] = $this->statusid;
     $array['status'] = $this->status;
+    $array['userid'] = $this->userid;
     $array['userfirstname'] = $this->userfirstname;
     $array['userlastname'] = $this->userlastname;
     $array['position'] = $this->userposition;
+    $array['hoursid'] = $this->hoursid;
     $array['hours'] = $this->hours;
+    $array['createdid'] = $this->usercreatedid;
     $array['createdname'] = $this->usercreatedname;
     $array['createdlastname'] = $this->usercreatedlastname;
     $array['createdat'] = $this->createdat;
@@ -88,14 +108,21 @@ class JoinTasksLapsesModel extends Model {
   public function getTaskId(){return $this->taskid;}
   public function getTitle(){return $this->title;}
   public function getDescription(){return $this->description;}
+  public function getShipId(){return $this->shipid;}
   public function getShip(){return $this->ship;}
+  public function getLapseId(){return $this->lapseid;}
   public function getLapse(){return $this->lapse;}
+  public function getCategoryId(){return $this->categoryid;}
   public function getCategory(){return $this->category;}
+  public function getStatusId(){return $this->statusid;}
   public function getStatus(){return $this->status;}
+  public function getUserId(){return $this->userid;}
   public function getUserFirstName(){return $this->userfirstname;}
   public function getUserLastName(){return $this->userlastname;}
   public function getUserPosition(){return $this->userposition;}
+  public function getHoursId(){return $this->hoursid;}
   public function getHours(){return $this->hours;}
+  public function getUserCreatedId(){return $this->usercreatedid;}
   public function getUserCreatedName(){return $this->usercreatedname;}
   public function getUserCreatedLastName(){return $this->usercreatedlastname;}
   public function getCreatedAt(){return $this->createdat;}

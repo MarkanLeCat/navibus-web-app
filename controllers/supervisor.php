@@ -66,7 +66,7 @@ class Supervisor extends SessionController{
   //Método para recuperar todas las tareas del usuario
   private function getTasks(){
     error_log("Supervisor::getTasks() id = " . $this->user->getId());
-    $tasks = new JoinTasksLapsesModel();
+    $tasks = new JoinTasksModel();
     return $tasks->getAllTasksByUserId($this->user->getId());
   }
 

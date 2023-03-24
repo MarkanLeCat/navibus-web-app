@@ -19,7 +19,7 @@ class Operator extends SessionController{
   //Método para renderizar la vista del panel de tareas
   function render(){
     error_log("OPERATOR::render() ");
-    $tasksLapsesModel = new JoinTasksLapsesModel();
+    $tasksLapsesModel = new JoinTasksModel();
     //Se obtienen las tareas del usuario
     $tasks = $this->getTasks();
     $tView = true;
@@ -61,7 +61,7 @@ class Operator extends SessionController{
   //Método para recuperar todas las tareas del usuario
   private function getTasks(){
     error_log("OPERATOR::getTasks() id = " . $this->user->getId());
-    $tasks = new JoinTasksLapsesModel();
+    $tasks = new JoinTasksModel();
     return $tasks->getAllTasksByUserId($this->user->getId());
   }
 

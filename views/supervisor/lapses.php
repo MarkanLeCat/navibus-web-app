@@ -234,7 +234,7 @@
                                                                                                                 <div class="mb-3">
                                                                                                                     <label class="form-label form-label" for="taskName-<?php echo $task->getTaskId(); ?>"><strong>Título de la tarea</strong></label>
                                                                                                                     <div class="form-group position-relative has-icon-left">
-                                                                                                                        <input class="form-control" type="text" id="taskName-<?php echo $task->getTaskId(); ?>" name="taskname" autocomplete="off" value="<?php echo $task->getTitle(); ?>" required="" maxlength="100">
+                                                                                                                        <input class="form-control" type="text" id="taskName-<?php echo $task->getTaskId(); ?>" name="taskname" autocomplete="off" value="<?php echo $task->getTaskTitle(); ?>" required="" maxlength="100">
                                                                                                                         <div class="form-control-icon"><i class="bi bi-clipboard"></i></div>
                                                                                                                     </div>
                                                                                                                 </div>
@@ -243,7 +243,7 @@
                                                                                                                 <div class="mb-3">
                                                                                                                     <label class="form-label" for="taskDescription-<?php echo $task->getTaskId(); ?>"><strong>Descripción de la tarea</strong></label>
                                                                                                                     <div class="form-group position-relative has-icon-left">
-                                                                                                                        <textarea class="form-control" id="taskDescription-<?php echo $task->getTaskId(); ?>" name="taskdescription" Value="<?php echo $task->getDescription(); ?>" autocomplete="off" spellcheck="true" required="" maxlength="200"><?php echo $task->getDescription(); ?></textarea>
+                                                                                                                        <textarea class="form-control" id="taskDescription-<?php echo $task->getTaskId(); ?>" name="taskdescription" Value="<?php echo $task->getTaskDescription(); ?>" autocomplete="off" spellcheck="true" required="" maxlength="200"><?php echo $task->getDescription(); ?></textarea>
                                                                                                                         <div class="form-control-icon"><i class="bi bi-file-text"></i></div>
                                                                                                                     </div>
                                                                                                                 </div>
@@ -254,10 +254,10 @@
                                                                                                                     <div class="form-group">
                                                                                                                         <select class="form-select" id="taskCategory-<?php echo $task->getTaskId(); ?>" name="taskcategory" required="">
                                                                                                                             <option value="">Seleccione la categoría</option>
-                                                                                                                            <option value="1" <?php if($task->getCategory() === 'Diaria') echo 'selected'; ?>>Diaria</option>
-                                                                                                                            <option value="2" <?php if($task->getCategory() === 'Semanal') echo 'selected'; ?>>Semanal</option>
-                                                                                                                            <option value="3" <?php if($task->getCategory() === 'Mensual') echo 'selected'; ?>>Mensual</option>
-                                                                                                                            <option value="4" <?php if($task->getCategory() === 'Trimestral') echo 'selected'; ?>>Trimestral</option>
+                                                                                                                            <option value="1" <?php if($task->getTaskCategory() === 'Diaria') echo 'selected'; ?>>Diaria</option>
+                                                                                                                            <option value="2" <?php if($task->getTaskCategory() === 'Semanal') echo 'selected'; ?>>Semanal</option>
+                                                                                                                            <option value="3" <?php if($task->getTaskCategory() === 'Mensual') echo 'selected'; ?>>Mensual</option>
+                                                                                                                            <option value="4" <?php if($task->getTaskCategory() === 'Trimestral') echo 'selected'; ?>>Trimestral</option>
                                                                                                                         </select>
                                                                                                                     </div>
                                                                                                                 </div>
@@ -269,7 +269,7 @@
                                                                                                                         <select class="form-select" id="taskLapse-<?php echo $task->getTaskId(); ?>" name="tasklapse" required="">
                                                                                                                             <option value="">Seleccione el lapso</option>
                                                                                                                             <?php foreach ($lapses as $lapse){?>
-                                                                                                                                <option value="<?php echo $lapse->getLapseId(); ?>" <?php if($task->getLapse() === $lapse->getLapseName()) echo 'selected'; ?>><?php echo $lapse->getLapseName(); ?></option>
+                                                                                                                                <option value="<?php echo $lapse->getLapseId(); ?>" <?php if($task->getTaskLapseId() === $lapse->getLapseId()) echo 'selected'; ?>><?php echo $lapse->getLapseName(); ?></option>
                                                                                                                             <?php 
                                                                                                                             }
                                                                                                                             ?>
@@ -285,7 +285,7 @@
                                                                                                                             <option value="">Seleccione el usuario</option>
                                                                                                                             <?php foreach ($users as $user){ 
                                                                                                                                 if($user->getRole() !== 1 && $user->getRole() !== 4) { ?>
-                                                                                                                                    <option value="<?php echo $user->getId(); ?>" <?php if($task->getUserFirstName() === $user->getName() && $task->getUserLastName() === $user->getLastname() && $task->getUserPosition() === $user->getPosition()) echo 'selected'; ?>><?php echo $user->getName(); ?> <?php echo $user->getLastname(); ?> - <?php echo $user->getPosition(); ?></option>
+                                                                                                                                    <option value="<?php echo $user->getId(); ?>" <?php if($task->getTaskUserId() === $user->getId()) echo 'selected'; ?>><?php echo $user->getName(); ?> <?php echo $user->getLastname(); ?> - <?php echo $user->getPosition(); ?></option>
                                                                                                                                 <?php
                                                                                                                                 }
                                                                                                                             }
