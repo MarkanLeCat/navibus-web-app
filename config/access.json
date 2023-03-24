@@ -1,0 +1,46 @@
+{
+    "sites":[
+        {
+            "site" : "", 
+            "access" : "public", 
+            "role" : ""
+        },
+        {
+            "site" : "operator", 
+            "access" : "private", 
+            "role" : 3
+        },
+        {
+            "site" : "supervisor", 
+            "access" : "private", 
+            "role" : 2
+        },
+        {
+            "site" : "tasks", 
+            "access" : "private", 
+            "role" : 2
+        },
+        {
+            "site" : "lapses", 
+            "access" : "private", 
+            "role" : 2
+        },
+        {
+            "site" : "administrative", 
+            "access" : "private", 
+            "role" : 4
+        },
+        {
+            "site" : "admin", 
+            "access" : "private", 
+            "role" : 1
+        }
+    ],
+
+    "default-sites":{
+        "operator": "operator",
+        "supervisor": "supervisor",
+        "administrative": "administrative",
+        "admin": "admin"
+    }
+}

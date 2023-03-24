@@ -1,0 +1,30 @@
+#error {
+  height: 100vh;
+  background-color: #ebf3ff;
+  padding-top: 1rem;
+}
+
+#error .img-error {
+  width: 65%;
+}
+
+#error .error-title {
+  font-size: 4rem;
+}
+
+#error .text-center {
+  margin-top: -2rem;
+}
+
+@media (min-height: 800px) {
+  #error .text-center {
+    margin-top: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #error .text-center {
+    margin-top: 2.5rem;
+  }
+}
+

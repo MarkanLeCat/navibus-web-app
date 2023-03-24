@@ -1,0 +1,258 @@
+/* Estilos generales */
+
+#main-content {
+  max-width: 1000px;
+  margin: auto;
+}
+
+/* Estilos para mantener abajo el footer */
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#main-content {
+  min-height: calc(100vh - 106px - 120px);
+}
+
+/* Estilos para el sidebar */
+
+.sidebar-wrapper .sidebar-header img {
+  height: 2.5rem;
+}
+
+/* Estilos para el header */
+
+.navbar .logo img {
+  height: 3rem;
+  margin: 0 2rem;
+}
+
+.navbar .burger-btn i {
+  margin-bottom: .8rem;
+}
+
+.navbar-collapse {
+  justify-content: space-between;
+}
+
+/* Estilos para las cards */
+
+.card .card-header h4 {
+  text-align: center;
+}
+
+.card .card-header {
+  padding: 1rem 1.5rem;
+}
+
+.card-user-image {
+  height: 385px;
+}
+
+.card .card-body {
+  transition: 0.5s;
+}
+
+.bg-aprobadas-op {
+  border-radius: .5rem;
+  background-color: rgb(235, 36, 36, 0.3);
+}
+
+/* Estilos para las tareas y sus modales */
+
+.tasks {
+  background-color: #deebff;
+  padding: .7rem 1rem;
+  margin-bottom: .7rem;
+  border-radius: .7rem;
+  min-height: 4rem;
+}
+
+.tasks:hover {
+  background-color: #d1e2ff;
+}
+
+.tasks .task-user {
+  justify-content: end;
+  align-items: center;
+  color: #607080;
+}
+
+.tasks .task-user_image {
+  width: 2rem;
+  height: 2rem;
+}
+
+.tasks .task-user_name {
+  font-size: .7rem;
+}
+
+.modal-task_description {
+  border-bottom: 2px solid #dee2e6;
+  margin-left: .5rem;
+}
+
+.modal-task_description h6 {
+  padding-top: .6rem;
+  color: #607080;
+}
+
+/* Estilos para el apartado de nuevas tareas */
+
+.new-task {
+  margin-bottom: 1.5rem;
+  margin-left: 2rem;
+}
+
+.new-task .btn {
+  font-size: 1.1rem;
+}
+
+.new-task .btn i {
+  font-size: 1.2rem;
+  margin-bottom: .3rem;
+  margin-right: .6rem;
+}
+
+/* Estilos para los lapsos y sus modales */
+
+.card-body .lapse-list {
+  padding: 0 1.5rem;
+}
+
+.lapse-list svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.modal-lapse_details {
+  border-top: 2px solid #c7cacc;
+}
+
+.modal-lapse_description h6 {
+  color: #607080;
+  padding-top: .7rem;
+}
+
+/* Estilos para el botón de editar */
+
+.edit-button {
+  display: flex;
+  align-items: center;
+}
+
+.edit-button i {
+  padding-left: .5rem;
+  margin-right: .4rem;
+  margin-bottom: .1rem;
+}
+
+.edit-task-button svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Estilos para el botón de exportar a PDF */
+
+.card-body .export-pdf {
+  margin-top: 1.5rem;
+}
+
+.lapse-card .export-pdf {
+  margin-right: 1.5rem;
+}
+
+.modal-footer .export-pdf {
+  margin-top: 0.3rem;
+  margin-right: 0.3rem;
+}
+
+.export-pdf svg {
+  height: 1.1rem;
+  width: 1.1rem;
+  margin-right: .4rem;
+}
+
+/* Estilos del icono de deshabilitado del perfil */
+
+.state-icon {
+  padding: 0 .6rem;
+}
+
+.state-icon i {
+  font-size: 1.7rem;
+}
+
+.state-icon .icon-disabled {
+  color: #6c757d;
+}
+
+.state-icon .icon-enabled {
+  color: #435ebe;
+}
+
+.user-state p {
+  margin-top: .2rem;
+}
+
+.list-group .bi {
+  font-size: 1.2rem;
+}
+
+/* Estilos para el footer */
+
+.footer {
+  margin-top: auto;
+}
+
+.footer p {
+  margin-bottom: 0;
+}
+
+/* Estilos para resposividad */
+
+@media (max-width: 992px) {
+  .card-user-image {
+    height: 385px;
+  }
+}
+
+@media (min-width: 360px) {
+  .card {
+    min-height: 150px;
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    min-height: 200px;
+  }
+}
+
+@media (min-width: 992px) {
+  .card {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 992px) {
+  .card-user-image {
+    height: 20rem
+  }
+}
+
+@media (max-width: 992px) {
+  .modal-task_description {
+    padding-left: 1.2rem;
+    border-right: 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .modal-lapse_details {
+    border-right: 0;
+  }
+}
+
