@@ -1,6 +1,6 @@
 <?php
 
-class JoinLapsesTasksModel extends Model {
+class JoinLapsesModel extends Model {
 
   private $lapseid;
   private $lapsename;
@@ -51,7 +51,7 @@ class JoinLapsesTasksModel extends Model {
       $query->execute(["actualdate" => date("Y-m-d")]);
 
       while($p = $query->fetch(PDO::FETCH_ASSOC)){
-        $item = new JoinLapsesTasksModel();
+        $item = new JoinLapsesModel();
         $item->from($p);
 
         array_push($items, $item);
@@ -71,7 +71,7 @@ class JoinLapsesTasksModel extends Model {
       $query->execute(["lapseid" => $lapseid]);
 
       while($p = $query->fetch(PDO::FETCH_ASSOC)){
-        $item = new JoinLapsesTasksModel();
+        $item = new JoinLapsesModel();
         $item->fromTasksLapses($p);
 
         array_push($items, $item);
@@ -94,7 +94,7 @@ class JoinLapsesTasksModel extends Model {
       ]);
 
       while($p = $query->fetch(PDO::FETCH_ASSOC)){
-        $item = new JoinLapsesTasksModel();
+        $item = new JoinLapsesModel();
         $item->from($p);
         
         array_push($items, $item);
@@ -117,7 +117,7 @@ class JoinLapsesTasksModel extends Model {
       ]);
 
       while($p = $query->fetch(PDO::FETCH_ASSOC)){
-        $item = new JoinLapsesTasksModel();
+        $item = new JoinLapsesModel();
         $item->fromTasksLapses($p);
 
         array_push($items, $item);

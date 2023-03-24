@@ -35,7 +35,7 @@ class Administrative extends SessionController{
   //Método para renderizar la vista de lapsos
   function lapses(){
     error_log("Operator::lapses() ");
-    $lapsesTasksModel = new JoinLapsesTasksModel();
+    $lapsesTasksModel = new JoinLapsesModel();
     //Se obtienen los lapsos del usuario
     $lapses = $this->getLapses();
     $lView = true;
@@ -68,7 +68,7 @@ class Administrative extends SessionController{
   //Método para recuperar todos los lapsos del usuario
   private function getLapses(){
     error_log("Operator::getLapses() id = " . $this->user->getId());
-    $lapses = new JoinLapsesTasksModel();
+    $lapses = new JoinLapsesModel();
     return $lapses->getAllLapsesByUserId($this->user->getId());
   }
 

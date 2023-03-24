@@ -32,7 +32,7 @@ include_once 'models/usermodel.php';
 include_once 'models/adminmodel.php';
 include_once 'models/tasksmodel.php';
 include_once 'models/lapsesmodel.php';
-include_once "models/joinlapsestasksmodel.php";
+include_once "models/joinlapsesmodel.php";
 include_once "models/jointasksmodel.php";
 
 $app = new App();
