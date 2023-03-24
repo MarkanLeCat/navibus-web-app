@@ -1,7 +1,8 @@
 <?php
     $user = $this->d['user'];
-    $lapses = $this->d['lapses'];
     $tasks = $this->d['tasks'];
+    $users = $this->d['users'];
+    $lapses = $this->d['lapses'];
     $lView = $this->d['lView'];
 ?>
 
@@ -243,7 +244,7 @@
                                                                                                                 <div class="mb-3">
                                                                                                                     <label class="form-label" for="taskDescription-<?php echo $task->getTaskId(); ?>"><strong>Descripción de la tarea</strong></label>
                                                                                                                     <div class="form-group position-relative has-icon-left">
-                                                                                                                        <textarea class="form-control" id="taskDescription-<?php echo $task->getTaskId(); ?>" name="taskdescription" Value="<?php echo $task->getTaskDescription(); ?>" autocomplete="off" spellcheck="true" required="" maxlength="200"><?php echo $task->getDescription(); ?></textarea>
+                                                                                                                        <textarea class="form-control" id="taskDescription-<?php echo $task->getTaskId(); ?>" name="taskdescription" Value="<?php echo $task->getTaskDescription(); ?>" autocomplete="off" spellcheck="true" required="" maxlength="200"><?php echo $task->getTaskDescription(); ?></textarea>
                                                                                                                         <div class="form-control-icon"><i class="bi bi-file-text"></i></div>
                                                                                                                     </div>
                                                                                                                 </div>
@@ -299,10 +300,10 @@
                                                                                                                     <label class="form-label" for="taskHours-<?php echo $task->getTaskId(); ?>"><strong>Cantidad estimada de horas</strong></label>
                                                                                                                     <div class="form-group"><select class="form-select" id="taskHours-<?php echo $task->getTaskId(); ?>" name="taskhours" required="">
                                                                                                                             <option value="">Seleccione las Horas</option>
-                                                                                                                            <option value="1" <?php if($task->getHours() == '1') echo 'selected'; ?>>1 hora</option>
-                                                                                                                            <option value="2" <?php if($task->getHours() == '2') echo 'selected'; ?>>2 horas</option>
-                                                                                                                            <option value="3" <?php if($task->getHours() == '4') echo 'selected'; ?>>4 horas</option>
-                                                                                                                            <option value="4" <?php if($task->getHours() == '8') echo 'selected'; ?>>8 horas</option>
+                                                                                                                            <option value="1" <?php if($task->getTaskHours() == '1') echo 'selected'; ?>>1 hora</option>
+                                                                                                                            <option value="2" <?php if($task->getTaskHours() == '2') echo 'selected'; ?>>2 horas</option>
+                                                                                                                            <option value="3" <?php if($task->getTaskHours() == '4') echo 'selected'; ?>>4 horas</option>
+                                                                                                                            <option value="4" <?php if($task->getTaskHours() == '8') echo 'selected'; ?>>8 horas</option>
                                                                                                                         </select></div>
                                                                                                                 </div>
 
