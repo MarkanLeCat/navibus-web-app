@@ -71,7 +71,7 @@
                             <div class="col">
 
                                 <!-- Botón para crear un nuevo lapso de tiempo -->
-                                <button class="btn btn-primary d-flex align-items-center float-end" type="button" data-bs-target="#createLapse" data-bs-toggle="modal"><i class="bi bi-plus-circle"></i>Crear nuevo Lapso</button>
+                                <button class="btn btn-primary d-flex align-items-center float-end" type="button" data-bs-target="#createLapse" data-bs-toggle="modal"><i class="bi bi-plus-circle"></i>Crear nuevo lapso</button>
                                 
                                 <!-- Modal con formulario para crear un nuevo lapso de tiempo -->
                                 <div class="modal fade text-left" role="dialog" tabindex="-1" id="createLapse" aria-labelledby="myModalLabel33" aria-hidden="true">
@@ -89,20 +89,20 @@
                                                 <form action="<?php echo constant('URL'); ?>lapses/createLapse" method="POST">
 
                                                     <!-- Input del título del lapso -->
-                                                    <div id="lapseNameDiv" class="mb-3">
-                                                        <label class="form-label" for="lapseName"><strong>Nombre del Lapso</strong></label>
+                                                    <div class="mb-3 lapseNameDiv">
+                                                        <label class="form-label" for="lapseName"><strong>Nombre del lapso</strong></label>
                                                         <div class="form-group position-relative has-icon-left">
-                                                            <input class="form-control" type="text" id="lapseName" name="lapsename" autocomplete="off" placeholder="Nombre del lapso" required="" maxlength="50">
+                                                            <input class="form-control lapseName" type="text" id="lapseName" name="lapsename" autocomplete="off" placeholder="Nombre del lapso" required="" maxlength="50">
                                                             <div class="form-control-icon"><i class="bi bi-bar-chart-steps"></i></div>
                                                         </div>
                                                     </div>
                                                     
                                                     <!-- Input de la categoría del lapso -->
-                                                    <div id="lapseCategoryDiv" class="mb-3">
+                                                    <div class="mb-3 lapseCategoryDiv">
                                                         <label class="form-label" for="lapseCategory"><strong>Categoría</strong></label>
                                                         <div class="form-group">
-                                                            <select class="form-select" id="lapseCategory" name="lapsecategory" required="">
-                                                                <option value="" selected="">Seleccione la Categoría</option>
+                                                            <select class="form-select lapseCategory" id="lapseCategory" name="lapsecategory" required="">
+                                                                <option value="" selected="">Seleccione la categoría</option>
                                                                 <option value="2">Semanal</option>
                                                                 <option value="3">Mensual</option>
                                                                 <option value="4">Trimestral</option>
@@ -111,26 +111,25 @@
                                                     </div>
 
                                                     <!-- Input de la fecha de inicio del lapso -->
-                                                    <div id="lapseInitialDateDiv" class="mb-3">
-                                                        <label class="form-label" for="lapseInitialDate"><strong>Fecha de Inicio</strong></label>
+                                                    <div class="mb-3 lapseInitialDateDiv">
+                                                        <label class="form-label" for="lapseInitialDate"><strong>Fecha de inicio</strong></label>
                                                         <div class="form-group">
-                                                            <!-- Input de tipo fecha con el atributo min para que no se pueda seleccionar una fecha anterior a la actual -->
-                                                            <input class="form-control" id="lapseInitialDate" type="date" name="lapseinitialdate" required="" min="<?php echo date('Y-m-d'); ?>" disabled>
+                                                            <input class="form-control lapseInitialDate" id="lapseInitialDate" type="date" name="lapseinitialdate" required="" min="<?php echo date('Y-m-d'); ?>" disabled>
                                                         </div>
                                                     </div>
 
                                                     <!-- Input de la fecha de finalización del lapso -->
                                                     <div class="mb-3">
-                                                        <label class="form-label" for="lapseEndDate"><strong>Fecha de Finalización</strong></label>
+                                                        <label class="form-label" for="lapseEndDate"><strong>Fecha de finalización</strong></label>
                                                         <div class="form-group">
-                                                            <input class="form-control" id="lapseEndDate" type="date" name="lapseenddate" disabled>
+                                                            <input class="form-control lapseEndDate" id="lapseEndDate" type="date" name="lapseenddate" disabled>
                                                         </div>
                                                     </div>
 
                                                     <!-- Footer del modal -->
                                                     <div class="modal-footer">
                                                         <button class="btn btn-light-secondary" type="button" data-bs-dismiss="modal"><i class="d-block d-sm-none bx bx-x"></i><span class="d-none d-sm-block">Cerrar</span></button>
-                                                        <button id="create-lapse" class="btn btn-primary ml-1" type="submit" data-bs-dismiss="modal"><i class="d-block d-sm-none bx bx-check"></i><span class="d-none d-sm-block">Crear</span></button>
+                                                        <button class="btn btn-primary ml-1 button-lapse" type="submit" data-bs-dismiss="modal"><i class="d-block d-sm-none bx bx-check"></i><span class="d-none d-sm-block">Crear</span></button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -149,7 +148,7 @@
                                 <!-- Lista de Lapsos -->
                                 <div class="card lapse-card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Lista de Lapsos</h4>
+                                        <h4 class="card-title">Lista de lapsos</h4>
                                     </div>
                                     <div class="card-body">
 
@@ -224,7 +223,8 @@
                                                                                                 ?>"><?php echo $task->getStatus(); ?></span></td>
                                                                                                 <td><?php echo $task->getTaskCreatedAt(); ?></td>
                                                                                                 <td><?php echo $task->getTaskUpdatedAt(); ?></td>
-                                                                                                <td><button class="btn btn-info btn-sm edit-task-button" type="button" data-bs-target="#editTask-<?php echo $task->getTaskId(); ?>" data-bs-toggle="modal" data-bs-dismiss="modal">
+                                                                                                <td>
+                                                                                                    <button class="btn btn-info btn-sm edit-task-button" type="button" data-bs-target="#editTask-<?php echo $task->getTaskId(); ?>" data-bs-toggle="modal" data-bs-dismiss="modal">
                                                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-pencil-square">
                                                                                                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
                                                                                                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
@@ -232,127 +232,6 @@
                                                                                                     </button>
                                                                                                 </td>
                                                                                             </tr>
-
-                                                                                            <!-- Modal para editar tarea -->
-                                                                                            <div class="modal fade text-left" role="dialog" tabindex="-1" id="editTask-<?php echo $task->getTaskId(); ?>" aria-labelledby="myModalLabel33" aria-hidden="true">
-                                                                                                <div class="modal-dialog modal-dialog-scrollable" role="document">
-                                                                                                    <div class="modal-content">
-
-                                                                                                        <!-- Header del modal -->
-                                                                                                        <div class="modal-header">
-                                                                                                            <h4 class="modal-title" id="myModalLabel-6">Editar la tarea</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                                                        </div>
-
-                                                                                                        <!-- Cuerpo del modal -->
-                                                                                                        <div class="modal-body">
-
-                                                                                                            <!-- Formulario para editar la tarea -->
-                                                                                                            <form action="<?php echo constant('URL'); ?>tasks/updateTask" method="POST">
-
-                                                                                                                <input type="number" name="taskid" value="<?php echo $task->getTaskId(); ?>" required="" hidden>
-                                                                                                                <input type="number" name="status" value="<?php
-                                                                                                                    switch ($task->getStatus()) {
-                                                                                                                        case 'Por hacer':
-                                                                                                                            echo 1;
-                                                                                                                            break;
-                                                                                                                        case 'En curso':
-                                                                                                                            echo 2;
-                                                                                                                            break;
-                                                                                                                        case 'Finalizada':
-                                                                                                                            echo 3;
-                                                                                                                            break;
-                                                                                                                        case 'Aprobada':
-                                                                                                                            echo 4;
-                                                                                                                            break;
-                                                                                                                    }
-                                                                                                                ?>" required="" hidden>
-                                                                                                            
-                                                                                                                <!-- Input del título de la tarea -->
-                                                                                                                <div class="mb-3">
-                                                                                                                    <label class="form-label form-label" for="taskName-<?php echo $task->getTaskId(); ?>"><strong>Título de la tarea</strong></label>
-                                                                                                                    <div class="form-group position-relative has-icon-left">
-                                                                                                                        <input class="form-control" type="text" id="taskName-<?php echo $task->getTaskId(); ?>" name="taskname" autocomplete="off" value="<?php echo $task->getTaskTitle(); ?>" required="" maxlength="100">
-                                                                                                                        <div class="form-control-icon"><i class="bi bi-clipboard"></i></div>
-                                                                                                                    </div>
-                                                                                                                </div>
-
-                                                                                                                <!-- Input de la descripción de la tarea -->
-                                                                                                                <div class="mb-3">
-                                                                                                                    <label class="form-label" for="taskDescription-<?php echo $task->getTaskId(); ?>"><strong>Descripción de la tarea</strong></label>
-                                                                                                                    <div class="form-group position-relative has-icon-left">
-                                                                                                                        <textarea class="form-control" id="taskDescription-<?php echo $task->getTaskId(); ?>" name="taskdescription" Value="<?php echo $task->getTaskDescription(); ?>" autocomplete="off" spellcheck="true" required="" maxlength="200"><?php echo $task->getTaskDescription(); ?></textarea>
-                                                                                                                        <div class="form-control-icon"><i class="bi bi-file-text"></i></div>
-                                                                                                                    </div>
-                                                                                                                </div>
-
-                                                                                                                <!-- Input de la categoría de la tarea -->
-                                                                                                                <div class="mb-3">
-                                                                                                                    <label class="form-label" for="taskCategory-<?php echo $task->getTaskId(); ?>"><strong>Categoría</strong></label>
-                                                                                                                    <div class="form-group">
-                                                                                                                        <select class="form-select" id="taskCategory-<?php echo $task->getTaskId(); ?>" name="taskcategory" required="">
-                                                                                                                            <option value="">Seleccione la categoría</option>
-                                                                                                                            <option value="1" <?php if($task->getTaskCategory() === 'Diaria') echo 'selected'; ?>>Diaria</option>
-                                                                                                                            <option value="2" <?php if($task->getTaskCategory() === 'Semanal') echo 'selected'; ?>>Semanal</option>
-                                                                                                                            <option value="3" <?php if($task->getTaskCategory() === 'Mensual') echo 'selected'; ?>>Mensual</option>
-                                                                                                                            <option value="4" <?php if($task->getTaskCategory() === 'Trimestral') echo 'selected'; ?>>Trimestral</option>
-                                                                                                                        </select>
-                                                                                                                    </div>
-                                                                                                                </div>
-
-                                                                                                                <!-- Input del lapso de tiempo de la tarea -->
-                                                                                                                <div class="mb-3">
-                                                                                                                    <label class="form-label" for="taskLapse-<?php echo $task->getTaskId(); ?>"><strong>Lapso de tiempo</strong></label>
-                                                                                                                    <div class="form-group">
-                                                                                                                        <select class="form-select" id="taskLapse-<?php echo $task->getTaskId(); ?>" name="tasklapse" required="">
-                                                                                                                            <option value="">Seleccione el lapso</option>
-                                                                                                                            <?php foreach ($lapses as $lapse){?>
-                                                                                                                                <option value="<?php echo $lapse->getLapseId(); ?>" <?php if($task->getTaskLapseId() === $lapse->getLapseId()) echo 'selected'; ?>><?php echo $lapse->getLapseName(); ?></option>
-                                                                                                                            <?php 
-                                                                                                                            }
-                                                                                                                            ?>
-                                                                                                                        </select>
-                                                                                                                    </div>
-                                                                                                                </div>
-
-                                                                                                                <!-- Input del usuario asignado a la tarea -->
-                                                                                                                <div class="mb-3">
-                                                                                                                    <label class="form-label" for="taskUser-<?php echo $task->getTaskId(); ?>"><strong>Usuario asignado</strong></label>
-                                                                                                                    <div class="form-group">
-                                                                                                                        <select class="form-select" id="taskUser-<?php echo $task->getTaskId(); ?>" name="taskuser" required="">
-                                                                                                                            <option value="">Seleccione el usuario</option>
-                                                                                                                            <?php foreach ($users as $user){ 
-                                                                                                                                if($user->getRole() !== 1 && $user->getRole() !== 4) { ?>
-                                                                                                                                    <option value="<?php echo $user->getId(); ?>" <?php if($task->getTaskUserId() === $user->getId()) echo 'selected'; ?>><?php echo $user->getName(); ?> <?php echo $user->getLastname(); ?> - <?php echo $user->getPosition(); ?></option>
-                                                                                                                                <?php
-                                                                                                                                }
-                                                                                                                            }
-                                                                                                                            ?>
-                                                                                                                        </select>
-                                                                                                                    </div>
-                                                                                                                </div>
-
-                                                                                                                <!-- Input de la cantidad de horas de la tarea -->
-                                                                                                                <div class="mb-3">
-                                                                                                                    <label class="form-label" for="taskHours-<?php echo $task->getTaskId(); ?>"><strong>Cantidad estimada de horas</strong></label>
-                                                                                                                    <div class="form-group"><select class="form-select" id="taskHours-<?php echo $task->getTaskId(); ?>" name="taskhours" required="">
-                                                                                                                            <option value="">Seleccione las Horas</option>
-                                                                                                                            <option value="1" <?php if($task->getTaskHours() == '1') echo 'selected'; ?>>1 hora</option>
-                                                                                                                            <option value="2" <?php if($task->getTaskHours() == '2') echo 'selected'; ?>>2 horas</option>
-                                                                                                                            <option value="3" <?php if($task->getTaskHours() == '4') echo 'selected'; ?>>4 horas</option>
-                                                                                                                            <option value="4" <?php if($task->getTaskHours() == '8') echo 'selected'; ?>>8 horas</option>
-                                                                                                                        </select></div>
-                                                                                                                </div>
-
-                                                                                                                <!-- Footer del modal -->
-                                                                                                                <div class="modal-footer">
-                                                                                                                    <button class="btn btn-light-secondary" type="button" data-bs-dismiss="modal" data-bs-target="#lapseInfo-<?php echo $lapse->getLapseId(); ?>" data-bs-toggle="modal"><span class="d-none d-sm-block">Regresar</span></button>
-                                                                                                                    <button class="btn btn-primary ml-1" type="submit"><span class="d-none d-sm-block">Guardar cambios</span></button>
-                                                                                                                </div>
-                                                                                                            </form>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
                                                                                         <?php
                                                                                         } ?>
                                                                                     </tbody>
@@ -403,8 +282,6 @@
                                                                                 </table>
                                                                             </div>
                                                                         </div>
-        
-                                                                        
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -412,7 +289,7 @@
                                                             <!-- Footer del Modal -->
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-light-secondary" type="button" data-bs-dismiss="modal">Cerrar</button>
-                                                                <button class="btn btn-info edit-button" type="button" data-bs-target="#editLapse-<?php echo $task->getLapseId(); ?>" data-bs-toggle="modal" data-bs-dismiss="modal">Editar<i class="bi bi-pencil-square"></i></button>
+                                                                <button class="btn btn-info edit-button" type="button" data-bs-target="#editLapse-<?php echo $lapse->getLapseId(); ?>" data-bs-toggle="modal" data-bs-dismiss="modal">Editar<i class="bi bi-pencil-square"></i></button>
                                                                 <!-- Botón para exportar el lapso a PDF -->
                                                                 <!-- <a class="btn btn-danger d-flex align-items-center export-pdf" role="button" target="_blank">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-file-earmark-pdf">
@@ -425,43 +302,215 @@
                                                     </div>
                                                 </div>
 
-                                                <!-- Modal para editar el lapso -->
-                                            <?php
-                                            } ?>
-                                        </div>
-                                        <div class="modal fade text-left" role="dialog" tabindex="-1" id="editLapse" aria-labelledby="myModalLabel33" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-scrollable" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="myModalLabel-6">Editar el Lapso</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form action="#" method="post">
-                                                            <div class="mb-3"><label class="form-label" for="lapseName"><strong>Nombre del Lapso</strong></label>
-                                                                <div class="form-group position-relative has-icon-left"><input class="form-control" type="text" id="lapseName-1" name="lapsename" autocomplete="off" placeholder="Nombre del lapso" required="" maxlength="50">
-                                                                    <div class="form-control-icon"><i class="bi bi-bar-chart-steps"></i></div>
+                                                <!-- Foreach para los modales de editar tareas -->
+                                                <?php 
+                                                $lapseTasks = $tasks->getAllTasksByLapseId($lapse->getLapseId());
+
+                                                foreach($lapseTasks as $task) { ?>
+
+                                                    <!-- Modal para editar tarea -->
+                                                    <div class="modal fade text-left" role="dialog" tabindex="-1" id="editTask-<?php echo $task->getTaskId(); ?>" aria-labelledby="myModalLabel33" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                            <div class="modal-content">
+
+                                                                <!-- Header del modal -->
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title" id="myModalLabel-6">Editar la tarea</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+
+                                                                <!-- Cuerpo del modal -->
+                                                                <div class="modal-body">
+
+                                                                    <!-- Formulario para editar la tarea -->
+                                                                    <form action="<?php echo constant('URL'); ?>tasks/updateTask" method="POST">
+
+                                                                        <input type="number" name="taskid" value="<?php echo $task->getTaskId(); ?>" required="" hidden>
+                                                                        <input type="number" name="status" value="<?php
+                                                                            switch ($task->getStatus()) {
+                                                                                case 'Por hacer':
+                                                                                    echo 1;
+                                                                                    break;
+                                                                                case 'En curso':
+                                                                                    echo 2;
+                                                                                    break;
+                                                                                case 'Finalizada':
+                                                                                    echo 3;
+                                                                                    break;
+                                                                                case 'Aprobada':
+                                                                                    echo 4;
+                                                                                    break;
+                                                                            }
+                                                                        ?>" required="" hidden>
+                                                                    
+                                                                        <!-- Input del título de la tarea -->
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label form-label" for="taskName-<?php echo $task->getTaskId(); ?>"><strong>Título de la tarea</strong></label>
+                                                                            <div class="form-group position-relative has-icon-left">
+                                                                                <input class="form-control taskName" type="text" id="taskName-<?php echo $task->getTaskId(); ?>" name="taskname" autocomplete="off" value="<?php echo $task->getTaskTitle(); ?>" required="" maxlength="100">
+                                                                                <div class="form-control-icon"><i class="bi bi-clipboard"></i></div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <!-- Input de la descripción de la tarea -->
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="taskDescription-<?php echo $task->getTaskId(); ?>"><strong>Descripción de la tarea</strong></label>
+                                                                            <div class="form-group position-relative has-icon-left">
+                                                                                <textarea class="form-control" id="taskDescription-<?php echo $task->getTaskId(); ?>" name="taskdescription" Value="<?php echo $task->getTaskDescription(); ?>" autocomplete="off" spellcheck="true" required="" maxlength="200"><?php echo $task->getTaskDescription(); ?></textarea>
+                                                                                <div class="form-control-icon"><i class="bi bi-file-text"></i></div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <!-- Input del status de la tarea -->
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="taskStatus-<?php echo $task->getTaskId(); ?>"><strong>Estado de la tarea</strong></label>
+                                                                            <div class="form-group">
+                                                                                <select class="form-select" id="taskStatus-<?php echo $task->getTaskId(); ?>" name="status" required="">
+                                                                                    <option value="">Seleccione el estado</option>
+                                                                                    <option value="1" <?php if($task->getStatus() === 'Por hacer') echo 'selected'; ?>>Por hacer</option>
+                                                                                    <option value="2" <?php if($task->getStatus() === 'En curso') echo 'selected'; ?>>En curso</option>
+                                                                                    <option value="3" <?php if($task->getStatus() === 'Finalizada') echo 'selected'; ?>>Finalizada</option>
+                                                                                    <option value="4" <?php if($task->getStatus() === 'Aprobada') echo 'selected'; ?>>Aprobada</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <!-- Input de la categoría de la tarea -->
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="taskCategory-<?php echo $task->getTaskId(); ?>"><strong>Categoría</strong></label>
+                                                                            <div class="form-group">
+                                                                                <select class="form-select" id="taskCategory-<?php echo $task->getTaskId(); ?>" name="taskcategory" required="">
+                                                                                    <option value="">Seleccione la categoría</option>
+                                                                                    <option value="1" <?php if($task->getTaskCategory() === 'Diaria') echo 'selected'; ?>>Diaria</option>
+                                                                                    <option value="2" <?php if($task->getTaskCategory() === 'Semanal') echo 'selected'; ?>>Semanal</option>
+                                                                                    <option value="3" <?php if($task->getTaskCategory() === 'Mensual') echo 'selected'; ?>>Mensual</option>
+                                                                                    <option value="4" <?php if($task->getTaskCategory() === 'Trimestral') echo 'selected'; ?>>Trimestral</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <!-- Input del lapso de tiempo de la tarea -->
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="taskLapse-<?php echo $task->getTaskId(); ?>"><strong>Lapso de tiempo</strong></label>
+                                                                            <div class="form-group">
+                                                                                <select class="form-select" id="taskLapse-<?php echo $task->getTaskId(); ?>" name="tasklapse" required="">
+                                                                                    <option value="">Seleccione el lapso</option>
+                                                                                    <?php foreach ($lapses as $lapse){?>
+                                                                                        <option value="<?php echo $lapse->getLapseId(); ?>" <?php if($task->getTaskLapseId() === $lapse->getLapseId()) echo 'selected'; ?>><?php echo $lapse->getLapseName(); ?></option>
+                                                                                    <?php 
+                                                                                    }
+                                                                                    ?>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <!-- Input del usuario asignado a la tarea -->
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="taskUser-<?php echo $task->getTaskId(); ?>"><strong>Usuario asignado</strong></label>
+                                                                            <div class="form-group">
+                                                                                <select class="form-select" id="taskUser-<?php echo $task->getTaskId(); ?>" name="taskuser" required="">
+                                                                                    <option value="">Seleccione el usuario</option>
+                                                                                    <?php foreach ($users as $user){ 
+                                                                                        if($user->getRole() !== 1 && $user->getRole() !== 4) { ?>
+                                                                                            <option value="<?php echo $user->getId(); ?>" <?php if($task->getTaskUserId() === $user->getId()) echo 'selected'; ?>><?php echo $user->getName(); ?> <?php echo $user->getLastname(); ?> - <?php echo $user->getPosition(); ?></option>
+                                                                                        <?php
+                                                                                        }
+                                                                                    }
+                                                                                    ?>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <!-- Input de la cantidad de horas de la tarea -->
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="taskHours-<?php echo $task->getTaskId(); ?>"><strong>Cantidad estimada de horas</strong></label>
+                                                                            <div class="form-group"><select class="form-select" id="taskHours-<?php echo $task->getTaskId(); ?>" name="taskhours" required="">
+                                                                                    <option value="">Seleccione las Horas</option>
+                                                                                    <option value="1" <?php if($task->getTaskHours() == '1') echo 'selected'; ?>>1 hora</option>
+                                                                                    <option value="2" <?php if($task->getTaskHours() == '2') echo 'selected'; ?>>2 horas</option>
+                                                                                    <option value="3" <?php if($task->getTaskHours() == '4') echo 'selected'; ?>>4 horas</option>
+                                                                                    <option value="4" <?php if($task->getTaskHours() == '8') echo 'selected'; ?>>8 horas</option>
+                                                                                </select></div>
+                                                                        </div>
+
+                                                                        <!-- Footer del modal -->
+                                                                        <div class="modal-footer">
+                                                                            <button class="btn btn-light-secondary" type="button" data-bs-dismiss="modal" data-bs-target="#lapseInfo<?php echo $lapse->getLapseId(); ?>" data-bs-toggle="modal"><span class="d-none d-sm-block">Regresar</span></button>
+                                                                            <button class="btn btn-primary ml-1" type="submit"><span class="d-none d-sm-block">Guardar cambios</span></button>
+                                                                        </div>
+                                                                    </form>
                                                                 </div>
                                                             </div>
-                                                            <div class="mb-3"><label class="form-label" for="lapseCategory"><strong>Categoría</strong></label>
-                                                                <div class="form-group"><select class="form-select" id="lapseCategory-1" name="lapsecategory" required="">
-                                                                        <option value="" selected="">Seleccione la Categoría</option>
-                                                                        <option value="1">Diaria</option>
-                                                                        <option value="2">Semanal</option>
-                                                                        <option value="3">Mensual</option>
-                                                                        <option value="4">Trimestral</option>
-                                                                    </select></div>
+                                                        </div>
+                                                    </div>
+                                                <?php
+                                                } ?>
+
+                                                <!-- Modal para editar el lapso -->
+                                                <div class="modal fade text-left" role="dialog" tabindex="-1" id="editLapse-<?php echo $lapse->getLapseId(); ?>" aria-labelledby="myModalLabel33" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                        <div class="modal-content">
+
+                                                            <!-- Cabecera del modal -->
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="myModalLabel-4">Editar el lapso de tiempo</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
-                                                            <div class="mb-3"><label class="form-label" for="lapseInitialDate"><strong>Fecha de Inicio</strong></label>
-                                                                <div class="form-group"><input class="form-control" id="lapseInitialDate-1" type="date" name="lapseinitialdate" required=""></div>
+
+                                                            <!-- Cuerpo del modal -->
+                                                            <div class="modal-body">
+                                                                <!-- Formulario para editar el lapso de tiempo -->
+                                                                <form action="<?php echo constant('URL'); ?>lapses/updateLapse" method="POST">
+
+                                                                    <!-- Input del título del lapso -->
+                                                                    <div class="mb-3 lapseNameDiv">
+                                                                        <label class="form-label" for="lapseName<?php echo $lapse->getLapseId(); ?>"><strong>Nombre del lapso</strong></label>
+                                                                        <div class="form-group position-relative has-icon-left">
+                                                                            <input class="form-control lapseName" value="<?php echo $lapse->getLapseName(); ?>" type="text" id="lapseName<?php echo $lapse->getLapseId(); ?>" name="lapsename" autocomplete="off" placeholder="Nombre del lapso" required="" maxlength="50">
+                                                                            <div class="form-control-icon"><i class="bi bi-bar-chart-steps"></i></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <!-- Input de la categoría del lapso -->
+                                                                    <div class="mb-3 lapseCategoryDiv">
+                                                                        <label class="form-label" for="lapseCategory<?php echo $lapse->getLapseId(); ?>"><strong>Categoría</strong></label>
+                                                                        <div class="form-group">
+                                                                            <select class="form-select lapseCategory" id="lapseCategory<?php echo $lapse->getLapseId(); ?>" name="lapsecategory" required="">
+                                                                                <option value="">Seleccione la categoría</option>
+                                                                                <option value="2" <?php if($lapse->getCategory() === 'Semanal') echo 'selected'; ?>>Semanal</option>
+                                                                                <option value="3" <?php if($lapse->getCategory() === 'Mensual') echo 'selected'; ?>>Mensual</option>
+                                                                                <option value="4" <?php if($lapse->getCategory() === 'Trimestral') echo 'selected'; ?>>Trimestral</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Input de la fecha de inicio del lapso -->
+                                                                    <div class="mb-3 lapseInitialDateDiv">
+                                                                        <label class="form-label" for="lapseInitialDate<?php echo $lapse->getLapseId(); ?>"><strong>Fecha de inicio</strong></label>
+                                                                        <div class="form-group">
+                                                                            <!-- Input de tipo fecha con el atributo min para que no se pueda seleccionar una fecha anterior a la actual -->
+                                                                            <input class="form-control lapseInitialDate" value="<?php echo date('Y-m-d', strtotime($lapse->getInitial())); ?>" id="lapseInitialDate<?php echo $lapse->getLapseId(); ?>" type="date" name="lapseinitialdate" required="" min="<?php echo date('Y-m-d', strtotime($lapse->getInitial())); ?>">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Input de la fecha de finalización del lapso -->
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label" for="lapseEndDate<?php echo $lapse->getLapseId(); ?>"><strong>Fecha de finalización</strong></label>
+                                                                        <div class="form-group">
+                                                                            <input class="form-control lapseEndDate" value="<?php echo date('Y-m-d', strtotime($lapse->getEnd())); ?>" id="lapseEndDate<?php echo $lapse->getLapseId(); ?>" type="date" name="lapseenddate" disabled>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Footer del modal -->
+                                                                    <div class="modal-footer">
+                                                                        <button class="btn btn-light-secondary" type="button" data-bs-dismiss="modal" data-bs-target="#lapseInfo<?php echo $lapse->getLapseId(); ?>" data-bs-toggle="modal"><i class="d-block d-sm-none bx bx-x"></i><span class="d-none d-sm-block">Regresar</span></button>
+                                                                        <button class="btn btn-primary ml-1 button-lapse" type="submit" data-bs-dismiss="modal"><i class="d-block d-sm-none bx bx-check"></i><span class="d-none d-sm-block">Guardar cambios</span></button>
+                                                                    </div>
+                                                                </form>
                                                             </div>
-                                                            <div class="mb-3"><label class="form-label" for="lapseEndDate"><strong>Fecha de Finalización</strong></label>
-                                                                <div class="form-group"><input class="form-control" id="lapseEndDate-1" type="date" name="lapseenddate" disabled="" required=""></div>
-                                                            </div>
-                                                            <div class="modal-footer"><button class="btn btn-light-secondary" type="button" data-bs-dismiss="modal" data-bs-target="#lapseInfo" data-bs-toggle="modal"><span class="d-none d-sm-block">Regresar</span></button><button class="btn btn-primary ml-1" type="submit" data-bs-dismiss="modal"><span class="d-none d-sm-block">Guardar Cambios</span></button></div>
-                                                        </form>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            <?php
+                                            } ?>
                                         </div>
                                         
                                         <!-- <button class="btn btn-danger d-flex float-end align-items-center export-pdf" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-file-earmark-pdf">
