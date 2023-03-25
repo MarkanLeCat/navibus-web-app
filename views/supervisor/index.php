@@ -299,8 +299,8 @@
                                                                 <!-- Formulario para editar la tarea -->
                                                                 <form action="<?php echo constant('URL'); ?>tasks/updateTask" method="POST">
 
-                                                                    <input type="number" name="taskid" value="<?php echo $task->getTaskId(); ?>" required="" hidden>
-                                                                    <input type="number" name="status" value="<?php
+                                                                    <input type="hidden" name="taskid" value="<?php echo $task->getTaskId(); ?>" required="">
+                                                                    <input type="hidden" name="status" value="<?php
                                                                         switch ($task->getStatus()) {
                                                                             case 'Por hacer':
                                                                                 echo 1;
