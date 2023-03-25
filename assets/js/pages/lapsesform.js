@@ -30,7 +30,7 @@ for(let i = 0; i < lapseName.length; i++) {
         lapseNameDiv[i].after(textlapseName);
       }
     } else {
-      if (document.getElementById('text-lapseName').innerHTML !== null) {
+      if (document.getElementById('text-lapseName') !== null) {
         document.getElementById('text-lapseName').remove();
         lapseNameDiv[i].classList.add('mb-3');
       }
@@ -216,6 +216,7 @@ for(let i = 0; i < lapseName.length; i++) {
           const lapseInitialDateValue = new Date(lapseInitialDate[j].value);
           const lapseEndDateValue = lapseInitialDateValue.setDate(lapseInitialDateValue.getDate() + 7);
           lapseEndDate[j].value = new Date(lapseEndDateValue).toISOString().slice(0, 10);
+          console.log(lapseEndDate[j].value);
         } else {
           lapseEndDate[j].value = '';
         }

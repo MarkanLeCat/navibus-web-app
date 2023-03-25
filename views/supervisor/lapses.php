@@ -63,6 +63,7 @@
                 </div>
 
                 <!-- Contenido de la Página -->
+                <?php $this->showMessages();?>
                 <section class="section">
 
                     <!-- Nuevo lapso de tiempo -->
@@ -122,14 +123,14 @@
                                                     <div class="mb-3">
                                                         <label class="form-label" for="lapseEndDate"><strong>Fecha de finalización</strong></label>
                                                         <div class="form-group">
-                                                            <input class="form-control lapseEndDate" id="lapseEndDate" type="date" name="lapseenddate" disabled>
+                                                            <input class="form-control lapseEndDate" id="lapseEndDate" type="date" name="lapseenddate" required="" readonly>
                                                         </div>
                                                     </div>
 
                                                     <!-- Footer del modal -->
                                                     <div class="modal-footer">
                                                         <button class="btn btn-light-secondary" type="button" data-bs-dismiss="modal"><i class="d-block d-sm-none bx bx-x"></i><span class="d-none d-sm-block">Cerrar</span></button>
-                                                        <button class="btn btn-primary ml-1 button-lapse" type="submit" data-bs-dismiss="modal"><i class="d-block d-sm-none bx bx-check"></i><span class="d-none d-sm-block">Crear</span></button>
+                                                        <button class="btn btn-primary ml-1 button-lapse" type="submit"><i class="d-block d-sm-none bx bx-check"></i><span class="d-none d-sm-block">Crear</span></button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -302,6 +303,73 @@
                                                     </div>
                                                 </div>
 
+                                                <!-- Modal para editar el lapso -->
+                                                <div class="modal fade text-left" role="dialog" tabindex="-1" id="editLapse-<?php echo $lapse->getLapseId(); ?>" aria-labelledby="myModalLabel33" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                        <div class="modal-content">
+
+                                                            <!-- Cabecera del modal -->
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="myModalLabel-4">Editar el lapso de tiempo</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+
+                                                            <!-- Cuerpo del modal -->
+                                                            <div class="modal-body">
+                                                                <!-- Formulario para editar el lapso de tiempo -->
+                                                                <form action="<?php echo constant('URL'); ?>lapses/updateLapse" method="POST">
+
+                                                                    <input type="hidden" name="lapseid" value="<?php echo $lapse->getLapseId(); ?>" required="">
+
+                                                                    <!-- Input del título del lapso -->
+                                                                    <div class="mb-3 lapseNameDiv">
+                                                                        <label class="form-label" for="lapseName<?php echo $lapse->getLapseId(); ?>"><strong>Nombre del lapso</strong></label>
+                                                                        <div class="form-group position-relative has-icon-left">
+                                                                            <input class="form-control lapseName" value="<?php echo $lapse->getLapseName(); ?>" type="text" id="lapseName<?php echo $lapse->getLapseId(); ?>" name="lapsename" autocomplete="off" placeholder="Nombre del lapso" required="" maxlength="50">
+                                                                            <div class="form-control-icon"><i class="bi bi-bar-chart-steps"></i></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <!-- Input de la categoría del lapso -->
+                                                                    <div class="mb-3 lapseCategoryDiv">
+                                                                        <label class="form-label" for="lapseCategory<?php echo $lapse->getLapseId(); ?>"><strong>Categoría</strong></label>
+                                                                        <div class="form-group">
+                                                                            <select class="form-select lapseCategory" id="lapseCategory<?php echo $lapse->getLapseId(); ?>" name="lapsecategory" required="">
+                                                                                <option value="">Seleccione la categoría</option>
+                                                                                <option value="2" <?php if($lapse->getCategory() === 'Semanal') echo 'selected'; ?>>Semanal</option>
+                                                                                <option value="3" <?php if($lapse->getCategory() === 'Mensual') echo 'selected'; ?>>Mensual</option>
+                                                                                <option value="4" <?php if($lapse->getCategory() === 'Trimestral') echo 'selected'; ?>>Trimestral</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Input de la fecha de inicio del lapso -->
+                                                                    <div class="mb-3 lapseInitialDateDiv">
+                                                                        <label class="form-label" for="lapseInitialDate<?php echo $lapse->getLapseId(); ?>"><strong>Fecha de inicio</strong></label>
+                                                                        <div class="form-group">
+                                                                            <!-- Input de tipo fecha con el atributo min para que no se pueda seleccionar una fecha anterior a la actual -->
+                                                                            <input class="form-control lapseInitialDate" value="<?php echo date('Y-m-d', strtotime($lapse->getInitial())); ?>" id="lapseInitialDate<?php echo $lapse->getLapseId(); ?>" type="date" name="lapseinitialdate" required="" min="<?php echo date('Y-m-d', strtotime($lapse->getInitial())); ?>">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Input de la fecha de finalización del lapso -->
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label" for="lapseEndDate<?php echo $lapse->getLapseId(); ?>"><strong>Fecha de finalización</strong></label>
+                                                                        <div class="form-group">
+                                                                            <input class="form-control lapseEndDate" value="<?php echo date('Y-m-d', strtotime($lapse->getEnd())); ?>" id="lapseEndDate<?php echo $lapse->getLapseId(); ?>" type="date" name="lapseenddate" readonly>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Footer del modal -->
+                                                                    <div class="modal-footer">
+                                                                        <button class="btn btn-light-secondary" type="button" data-bs-dismiss="modal" data-bs-target="#lapseInfo<?php echo $lapse->getLapseId(); ?>" data-bs-toggle="modal"><i class="d-block d-sm-none bx bx-x"></i><span class="d-none d-sm-block">Regresar</span></button>
+                                                                        <button class="btn btn-primary ml-1 button-lapse" type="submit"><i class="d-block d-sm-none bx bx-check"></i><span class="d-none d-sm-block">Guardar cambios</span></button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 <!-- Foreach para los modales de editar tareas -->
                                                 <?php 
                                                 $lapseTasks = $tasks->getAllTasksByLapseId($lapse->getLapseId());
@@ -324,23 +392,7 @@
                                                                     <!-- Formulario para editar la tarea -->
                                                                     <form action="<?php echo constant('URL'); ?>tasks/updateTask" method="POST">
 
-                                                                        <input type="number" name="taskid" value="<?php echo $task->getTaskId(); ?>" required="" hidden>
-                                                                        <input type="number" name="status" value="<?php
-                                                                            switch ($task->getStatus()) {
-                                                                                case 'Por hacer':
-                                                                                    echo 1;
-                                                                                    break;
-                                                                                case 'En curso':
-                                                                                    echo 2;
-                                                                                    break;
-                                                                                case 'Finalizada':
-                                                                                    echo 3;
-                                                                                    break;
-                                                                                case 'Aprobada':
-                                                                                    echo 4;
-                                                                                    break;
-                                                                            }
-                                                                        ?>" required="" hidden>
+                                                                        <input type="hidden" name="taskid" value="<?php echo $task->getTaskId(); ?>" required="">
                                                                     
                                                                         <!-- Input del título de la tarea -->
                                                                         <div class="mb-3">
@@ -434,7 +486,7 @@
 
                                                                         <!-- Footer del modal -->
                                                                         <div class="modal-footer">
-                                                                            <button class="btn btn-light-secondary" type="button" data-bs-dismiss="modal" data-bs-target="#lapseInfo<?php echo $lapse->getLapseId(); ?>" data-bs-toggle="modal"><span class="d-none d-sm-block">Regresar</span></button>
+                                                                            <button class="btn btn-light-secondary" type="button" data-bs-dismiss="modal" data-bs-target="#lapseInfo<?php echo $task->getTaskLapseId(); ?>" data-bs-toggle="modal"><span class="d-none d-sm-block">Regresar</span></button>
                                                                             <button class="btn btn-primary ml-1" type="submit"><span class="d-none d-sm-block">Guardar cambios</span></button>
                                                                         </div>
                                                                     </form>
@@ -444,71 +496,6 @@
                                                     </div>
                                                 <?php
                                                 } ?>
-
-                                                <!-- Modal para editar el lapso -->
-                                                <div class="modal fade text-left" role="dialog" tabindex="-1" id="editLapse-<?php echo $lapse->getLapseId(); ?>" aria-labelledby="myModalLabel33" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
-                                                        <div class="modal-content">
-
-                                                            <!-- Cabecera del modal -->
-                                                            <div class="modal-header">
-                                                                <h4 class="modal-title" id="myModalLabel-4">Editar el lapso de tiempo</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-
-                                                            <!-- Cuerpo del modal -->
-                                                            <div class="modal-body">
-                                                                <!-- Formulario para editar el lapso de tiempo -->
-                                                                <form action="<?php echo constant('URL'); ?>lapses/updateLapse" method="POST">
-
-                                                                    <!-- Input del título del lapso -->
-                                                                    <div class="mb-3 lapseNameDiv">
-                                                                        <label class="form-label" for="lapseName<?php echo $lapse->getLapseId(); ?>"><strong>Nombre del lapso</strong></label>
-                                                                        <div class="form-group position-relative has-icon-left">
-                                                                            <input class="form-control lapseName" value="<?php echo $lapse->getLapseName(); ?>" type="text" id="lapseName<?php echo $lapse->getLapseId(); ?>" name="lapsename" autocomplete="off" placeholder="Nombre del lapso" required="" maxlength="50">
-                                                                            <div class="form-control-icon"><i class="bi bi-bar-chart-steps"></i></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    
-                                                                    <!-- Input de la categoría del lapso -->
-                                                                    <div class="mb-3 lapseCategoryDiv">
-                                                                        <label class="form-label" for="lapseCategory<?php echo $lapse->getLapseId(); ?>"><strong>Categoría</strong></label>
-                                                                        <div class="form-group">
-                                                                            <select class="form-select lapseCategory" id="lapseCategory<?php echo $lapse->getLapseId(); ?>" name="lapsecategory" required="">
-                                                                                <option value="">Seleccione la categoría</option>
-                                                                                <option value="2" <?php if($lapse->getCategory() === 'Semanal') echo 'selected'; ?>>Semanal</option>
-                                                                                <option value="3" <?php if($lapse->getCategory() === 'Mensual') echo 'selected'; ?>>Mensual</option>
-                                                                                <option value="4" <?php if($lapse->getCategory() === 'Trimestral') echo 'selected'; ?>>Trimestral</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <!-- Input de la fecha de inicio del lapso -->
-                                                                    <div class="mb-3 lapseInitialDateDiv">
-                                                                        <label class="form-label" for="lapseInitialDate<?php echo $lapse->getLapseId(); ?>"><strong>Fecha de inicio</strong></label>
-                                                                        <div class="form-group">
-                                                                            <!-- Input de tipo fecha con el atributo min para que no se pueda seleccionar una fecha anterior a la actual -->
-                                                                            <input class="form-control lapseInitialDate" value="<?php echo date('Y-m-d', strtotime($lapse->getInitial())); ?>" id="lapseInitialDate<?php echo $lapse->getLapseId(); ?>" type="date" name="lapseinitialdate" required="" min="<?php echo date('Y-m-d', strtotime($lapse->getInitial())); ?>">
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <!-- Input de la fecha de finalización del lapso -->
-                                                                    <div class="mb-3">
-                                                                        <label class="form-label" for="lapseEndDate<?php echo $lapse->getLapseId(); ?>"><strong>Fecha de finalización</strong></label>
-                                                                        <div class="form-group">
-                                                                            <input class="form-control lapseEndDate" value="<?php echo date('Y-m-d', strtotime($lapse->getEnd())); ?>" id="lapseEndDate<?php echo $lapse->getLapseId(); ?>" type="date" name="lapseenddate" disabled>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <!-- Footer del modal -->
-                                                                    <div class="modal-footer">
-                                                                        <button class="btn btn-light-secondary" type="button" data-bs-dismiss="modal" data-bs-target="#lapseInfo<?php echo $lapse->getLapseId(); ?>" data-bs-toggle="modal"><i class="d-block d-sm-none bx bx-x"></i><span class="d-none d-sm-block">Regresar</span></button>
-                                                                        <button class="btn btn-primary ml-1 button-lapse" type="submit" data-bs-dismiss="modal"><i class="d-block d-sm-none bx bx-check"></i><span class="d-none d-sm-block">Guardar cambios</span></button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             <?php
                                             } ?>
                                         </div>
@@ -541,8 +528,7 @@
     <?php foreach ($lapses as $lapse) { ?>
         <script>
             // Simple Datatable
-            let dataTable<?php echo $lapse->getLapseId(); ?> = document.querySelector('#dataTable<?php echo $lapse->getLapseId(); ?>');
-            let dataTable = new simpleDatatables.DataTable(dataTable<?php echo $lapse->getLapseId(); ?>);
+            let dataTable<?php echo $lapse->getLapseId(); ?> = new simpleDatatables.DataTable(document.querySelector('#dataTable<?php echo $lapse->getLapseId(); ?>'));
         </script>
     <?php
     } ?>
