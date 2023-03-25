@@ -19,7 +19,7 @@ class Operator extends SessionController{
   //Método para renderizar la vista del panel de tareas
   function render(){
     error_log("OPERATOR::render() ");
-    $tasksLapsesModel = new JoinTasksLapsesModel();
+    $tasksLapsesModel = new JoinTasksModel();
     //Se obtienen las tareas del usuario
     $tasks = $this->getTasks();
     $tView = true;
@@ -35,7 +35,7 @@ class Operator extends SessionController{
   //Método para renderizar la vista de lapsos
   function lapses(){
     error_log("OPERATOR::lapses() ");
-    $lapsesTasksModel = new JoinLapsesTasksModel();
+    $lapsesTasksModel = new JoinLapsesModel();
     //Se obtienen los lapsos del usuario
     $lapses = $this->getLapses();
     $lView = true;
@@ -61,14 +61,14 @@ class Operator extends SessionController{
   //Método para recuperar todas las tareas del usuario
   private function getTasks(){
     error_log("OPERATOR::getTasks() id = " . $this->user->getId());
-    $tasks = new JoinTasksLapsesModel();
+    $tasks = new JoinTasksModel();
     return $tasks->getAllTasksByUserId($this->user->getId());
   }
 
   //Método para recuperar todos los lapsos del usuario
   private function getLapses(){
     error_log("OPERATOR::getLapses() id = " . $this->user->getId());
-    $lapses = new JoinLapsesTasksModel();
+    $lapses = new JoinLapsesModel();
     return $lapses->getAllLapsesByUserId($this->user->getId());
   }
 

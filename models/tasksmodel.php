@@ -1,6 +1,6 @@
 <?php
 
-class TasksModel extends Model implements IModel{
+class TasksModel extends Model{
 
   private $id;
   private $title;

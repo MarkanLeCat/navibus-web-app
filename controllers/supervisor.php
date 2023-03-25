@@ -39,7 +39,7 @@ class Supervisor extends SessionController{
   function lapses(){
     error_log("Supervisor::lapses() ");
     //Se obtienen los lapsos del usuario
-    $lapsesTasksModel = new JoinLapsesTasksModel();
+    $lapsesTasksModel = new JoinLapsesModel();
     $users = $this->getUsers();
     $lapses = $this->getLapses();
     $lView = true;
@@ -66,14 +66,14 @@ class Supervisor extends SessionController{
   //Método para recuperar todas las tareas del usuario
   private function getTasks(){
     error_log("Supervisor::getTasks() id = " . $this->user->getId());
-    $tasks = new JoinTasksLapsesModel();
+    $tasks = new JoinTasksModel();
     return $tasks->getAllTasksByUserId($this->user->getId());
   }
 
   //Método para recuperar todos los lapsos
   private function getLapses(){
     error_log("Supervisor::getLapses()");
-    $lapses = new JoinLapsesTasksModel();
+    $lapses = new JoinLapsesModel();
     return $lapses->getAllLapses();
   }
 
