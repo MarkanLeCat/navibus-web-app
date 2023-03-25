@@ -38,8 +38,9 @@
             <!-- Llamada al Header -->
             <?php require 'header.php'; ?>
 
-            <!-- Cabecera de la Página -->
             <main id="main-content">
+                
+                <!-- Cabecera de la Página -->
                 <div class="page-heading">
                     <div class="page-title">
                         <div class="row">
@@ -61,41 +62,73 @@
                     </div>
                 </div>
 
-
-
+                <!-- Contenido de la Página -->
                 <section class="section">
+
+                    <!-- Nuevo lapso de tiempo -->
                     <div class="new-task">
                         <div class="row">
-                            <div class="col"><button class="btn btn-primary d-flex align-items-center" type="button" data-bs-target="#createLapse" data-bs-toggle="modal"><i class="bi bi-plus-circle"></i>Crear nuevo Lapso</button>
+                            <div class="col">
+
+                                <!-- Botón para crear un nuevo lapso de tiempo -->
+                                <button class="btn btn-primary d-flex align-items-center float-end" type="button" data-bs-target="#createLapse" data-bs-toggle="modal"><i class="bi bi-plus-circle"></i>Crear nuevo Lapso</button>
+                                
+                                <!-- Modal con formulario para crear un nuevo lapso de tiempo -->
                                 <div class="modal fade text-left" role="dialog" tabindex="-1" id="createLapse" aria-labelledby="myModalLabel33" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
+
+                                            <!-- Cabecera del modal -->
                                             <div class="modal-header">
                                                 <h4 class="modal-title" id="myModalLabel-4">Crear un nuevo lapso de tiempo</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
+
+                                            <!-- Cuerpo del modal -->
                                             <div class="modal-body">
-                                                <form action="#" method="post">
-                                                    <div class="mb-3"><label class="form-label" for="lapseName"><strong>Nombre del Lapso</strong></label>
-                                                        <div class="form-group position-relative has-icon-left"><input class="form-control" type="text" id="lapseName" name="lapsename" autocomplete="off" placeholder="Nombre del lapso" required="" maxlength="50">
+                                                <!-- Formulario para crear un nuevo lapso de tiempo -->
+                                                <form action="<?php echo constant('URL'); ?>lapses/createLapse" method="POST">
+
+                                                    <!-- Input del título del lapso -->
+                                                    <div id="lapseNameDiv" class="mb-3">
+                                                        <label class="form-label" for="lapseName"><strong>Nombre del Lapso</strong></label>
+                                                        <div class="form-group position-relative has-icon-left">
+                                                            <input class="form-control" type="text" id="lapseName" name="lapsename" autocomplete="off" placeholder="Nombre del lapso" required="" maxlength="50">
                                                             <div class="form-control-icon"><i class="bi bi-bar-chart-steps"></i></div>
                                                         </div>
                                                     </div>
-                                                    <div class="mb-3"><label class="form-label" for="lapseCategory"><strong>Categoría</strong></label>
-                                                        <div class="form-group"><select class="form-select" id="lapseCategory" name="lapsecategory" required="">
+                                                    
+                                                    <!-- Input de la categoría del lapso -->
+                                                    <div id="lapseCategoryDiv" class="mb-3">
+                                                        <label class="form-label" for="lapseCategory"><strong>Categoría</strong></label>
+                                                        <div class="form-group">
+                                                            <select class="form-select" id="lapseCategory" name="lapsecategory" required="">
                                                                 <option value="" selected="">Seleccione la Categoría</option>
                                                                 <option value="1">Diaria</option>
                                                                 <option value="2">Semanal</option>
                                                                 <option value="3">Mensual</option>
                                                                 <option value="4">Trimestral</option>
-                                                            </select></div>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                    <div class="mb-3"><label class="form-label" for="lapseInitialDate"><strong>Fecha de Inicio</strong></label>
-                                                        <div class="form-group"><input class="form-control" id="lapseInitialDate" type="date" name="lapseinitialdate" required=""></div>
+
+                                                    <!-- Input de la fecha de inicio del lapso -->
+                                                    <div id="lapseInitialDateDiv" class="mb-3">
+                                                        <label class="form-label" for="lapseInitialDate"><strong>Fecha de Inicio</strong></label>
+                                                        <div class="form-group">
+                                                            <input class="form-control" id="lapseInitialDate" type="date" name="lapseinitialdate" required="">
+                                                        </div>
                                                     </div>
+
+                                                    <!-- Input de la fecha de finalización del lapso -->
                                                     <div class="mb-3"><label class="form-label" for="lapseEndDate"><strong>Fecha de Finalización</strong></label>
                                                         <div class="form-group"><input class="form-control" id="lapseEndDate" type="date" name="lapseenddate" disabled="" required=""></div>
                                                     </div>
-                                                    <div class="modal-footer"><button class="btn btn-light-secondary" type="button" data-bs-dismiss="modal"><i class="d-block d-sm-none bx bx-x"></i><span class="d-none d-sm-block">Cerrar</span></button><button class="btn btn-primary ml-1" type="submit" data-bs-dismiss="modal"><i class="d-block d-sm-none bx bx-check"></i><span class="d-none d-sm-block">Crear</span></button></div>
+
+                                                    <!-- Footer del modal -->
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-light-secondary" type="button" data-bs-dismiss="modal"><i class="d-block d-sm-none bx bx-x"></i><span class="d-none d-sm-block">Cerrar</span></button>
+                                                        <button id="create-lapse" class="btn btn-primary ml-1" type="submit" data-bs-dismiss="modal"><i class="d-block d-sm-none bx bx-check"></i><span class="d-none d-sm-block">Crear</span></button>
+                                                    </div>
                                                 </form>
                                             </div>
                                         </div>
@@ -175,13 +208,13 @@
                                                                                                         case 'Por hacer':
                                                                                                             echo 'bg-warning';
                                                                                                             break;
-                                                                                                        case 'En proceso':
+                                                                                                        case 'En curso':
                                                                                                             echo 'bg-primary';
                                                                                                             break;
-                                                                                                        case 'Finalizado':
+                                                                                                        case 'Finalizada':
                                                                                                             echo 'bg-info';
                                                                                                             break;
-                                                                                                        case 'Aprobado':
+                                                                                                        case 'Aprobada':
                                                                                                             echo 'bg-success';
                                                                                                             break;
                                                                                                     }
@@ -376,6 +409,7 @@
                                                             <!-- Footer del Modal -->
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-light-secondary" type="button" data-bs-dismiss="modal">Cerrar</button>
+                                                                <button class="btn btn-info edit-button" type="button" data-bs-target="#editLapse-<?php echo $task->getLapseId(); ?>" data-bs-toggle="modal" data-bs-dismiss="modal">Editar<i class="bi bi-pencil-square"></i></button>
                                                                 <!-- Botón para exportar el lapso a PDF -->
                                                                 <!-- <a class="btn btn-danger d-flex align-items-center export-pdf" role="button" target="_blank">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-file-earmark-pdf">
@@ -387,6 +421,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <!-- Modal para editar el lapso -->
                                             <?php
                                             } ?>
                                         </div>
