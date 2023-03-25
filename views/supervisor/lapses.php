@@ -103,7 +103,6 @@
                                                         <div class="form-group">
                                                             <select class="form-select" id="lapseCategory" name="lapsecategory" required="">
                                                                 <option value="" selected="">Seleccione la Categoría</option>
-                                                                <option value="1">Diaria</option>
                                                                 <option value="2">Semanal</option>
                                                                 <option value="3">Mensual</option>
                                                                 <option value="4">Trimestral</option>
@@ -115,13 +114,17 @@
                                                     <div id="lapseInitialDateDiv" class="mb-3">
                                                         <label class="form-label" for="lapseInitialDate"><strong>Fecha de Inicio</strong></label>
                                                         <div class="form-group">
-                                                            <input class="form-control" id="lapseInitialDate" type="date" name="lapseinitialdate" required="">
+                                                            <!-- Input de tipo fecha con el atributo min para que no se pueda seleccionar una fecha anterior a la actual -->
+                                                            <input class="form-control" id="lapseInitialDate" type="date" name="lapseinitialdate" required="" min="<?php echo date('Y-m-d'); ?>" disabled>
                                                         </div>
                                                     </div>
 
                                                     <!-- Input de la fecha de finalización del lapso -->
-                                                    <div class="mb-3"><label class="form-label" for="lapseEndDate"><strong>Fecha de Finalización</strong></label>
-                                                        <div class="form-group"><input class="form-control" id="lapseEndDate" type="date" name="lapseenddate" disabled="" required=""></div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="lapseEndDate"><strong>Fecha de Finalización</strong></label>
+                                                        <div class="form-group">
+                                                            <input class="form-control" id="lapseEndDate" type="date" name="lapseenddate" disabled>
+                                                        </div>
                                                     </div>
 
                                                     <!-- Footer del modal -->
@@ -483,6 +486,7 @@
     <script src="<?php echo constant('URL'); ?>assets/js/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="<?php echo constant('URL'); ?>assets/js/vendors/simple-datatables/simple-datatables.js"></script>
     <script src="<?php echo constant('URL'); ?>assets/js/js/mains.js"></script>
+    <script src="<?php echo constant('URL'); ?>assets/js/pages/lapsesform.js"></script>
 
     <!-- Script para crear los datatables -->
     <?php foreach ($lapses as $lapse) { ?>
