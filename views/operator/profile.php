@@ -30,7 +30,7 @@
         <!-- Llamada al Sidebar -->
         <?php require 'sidebar.php'; ?>
 
-        <d id="main" class="layout-navbar">
+        <div id="main" class="layout-navbar">
 
             <!-- Llamada al Header -->
             <?php require 'header.php'; ?>
