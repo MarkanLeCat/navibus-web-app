@@ -66,7 +66,7 @@
                 <?php $this->showMessages();?>
                 <section class="section">
 
-                    <!-- Crear nuevo usuario -->
+                    <!-- Crear nuevo usuario --> 
                     <div class="new-task">
                         <div class="row">
                             <div class="col">
@@ -225,7 +225,7 @@
                                                                     break;
                                                             }
                                                         ?></td>
-                                                        <td><span class="badge <?php if($user->getStatus() === 1) {echo 'bg-primary'; } else {echo 'bg-secundary'; } ?>"><?php if($user->getStatus() === 1) {echo 'Habilitado'; } else {echo 'Deshabilitado'; }  ?></span></td>
+                                                        <td><span class="badge <?php if($user->getStatus() === 1) {echo 'bg-success'; } else {echo 'bg-secundary'; } ?>"><?php if($user->getStatus() === 1) {echo 'Habilitado'; } else {echo 'Deshabilitado'; }  ?></span></td>
                                                         <td><?php echo $user->getName(); ?> <?php echo $user->getLastname(); ?></td>
                                                         <td><?php echo $user->getEmail(); ?></td>
                                                         <td><?php echo $user->getPosition(); ?></td>
