@@ -26,55 +26,6 @@ class UserModel extends Model{
         $this->phone = '';
     }
 
-    
-    function updateEmail($email, $iduser){
-        try{
-            $query = $this->db->connect()->prepare('UPDATE users SET email = :val WHERE id = :id');
-            $query->execute(['val' => $email, 'id' => $iduser]);
-
-            if($query->rowCount() > 0){
-                return true;
-            }else{
-                return false;
-            }
-        
-        }catch(PDOException $e){
-            return NULL;
-        }
-    }
-
-    function updateName($name, $iduser){
-        try{
-            $query = $this->db->connect()->prepare('UPDATE users SET name = :val WHERE id = :id');
-            $query->execute(['val' => $name, 'id' => $iduser]);
-
-            if($query->rowCount() > 0){
-                return true;
-            }else{
-                return false;
-            }
-        
-        }catch(PDOException $e){
-            return NULL;
-        }
-    }
-
-    function updateLastname($lastname, $iduser){
-        try{
-            $query = $this->db->connect()->prepare('UPDATE users SET lastname = :val WHERE id = :id');
-            $query->execute(['val' => $lastname, 'id' => $iduser]);
-
-            if($query->rowCount() > 0){
-                return true;
-            }else{
-                return false;
-            }
-        
-        }catch(PDOException $e){
-            return NULL;
-        }
-    }
-
     function updatePassword($new, $iduser){
         try{
             $hash = password_hash($new, PASSWORD_DEFAULT);
@@ -106,8 +57,6 @@ class UserModel extends Model{
             return NULL;
         }
     }
-
-
 
     public function save(){
         try{
@@ -193,11 +142,15 @@ class UserModel extends Model{
         try{
             $query = $this->prepare('SELECT * FROM users WHERE id = :id');
             $query->execute([ 'id' => $id]);
-            $user = $query->fetch(PDO::FETCH_ASSOC);
+            $res = $query->fetch(PDO::FETCH_ASSOC);
+            error_log("UserModel::getForAdmin() -> " . print($res));
+
+            $user = new UserModel();
+            $user->from($res);
 
             return $user;
         }catch(PDOException $e){
-            return false;
+            return array('success' => false, 'error' => $e);
         }
     }
     

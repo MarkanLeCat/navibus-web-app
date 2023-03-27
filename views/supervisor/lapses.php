@@ -4,6 +4,7 @@
     $users = $this->d['users'];
     $lapses = $this->d['lapses'];
     $lView = $this->d['lView'];
+    $tView = $this->d['tView'];
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +13,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Panel de tareas - Navibus</title>
+    <title>Panel de lapsos - Navibus</title>
     <link rel="stylesheet" href="<?php echo constant('URL'); ?>assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo constant('URL'); ?>assets/css/bootstrap-icons.css">
     <link rel="stylesheet" href="<?php echo constant('URL'); ?>assets/css/Iconly---Bold.css">
@@ -141,8 +142,6 @@
                         </div>
                     </div>
 
-                    <!-- Contenido de la Página -->
-                <section class="section">
                     <div class="container">
                         <div class="row">
                             <div class="col">
@@ -319,6 +318,7 @@
                                                                 <form action="<?php echo constant('URL'); ?>lapses/updateLapse" method="POST">
 
                                                                     <input type="hidden" name="lapseid" value="<?php echo $lapse->getLapseId(); ?>" required="">
+                                                                    <input type="hidden" name="lapseinitialold" value="<?php echo date('Y-m-d', strtotime($lapse->getInitial())); ?>" required="">
 
                                                                     <!-- Input del título del lapso -->
                                                                     <div class="mb-3 lapseNameDiv">
@@ -390,7 +390,7 @@
                                                                 <div class="modal-body">
 
                                                                     <!-- Formulario para editar la tarea -->
-                                                                    <form action="<?php echo constant('URL'); ?>tasks/updateTask" method="POST">
+                                                                    <form action="<?php echo constant('URL'); ?>tasks/updateTaskFromLapses" method="POST">
 
                                                                         <input type="hidden" name="taskid" value="<?php echo $task->getTaskId(); ?>" required="">
                                                                     
@@ -476,7 +476,7 @@
                                                                         <div class="mb-3">
                                                                             <label class="form-label" for="taskHours-<?php echo $task->getTaskId(); ?>"><strong>Cantidad estimada de horas</strong></label>
                                                                             <div class="form-group"><select class="form-select" id="taskHours-<?php echo $task->getTaskId(); ?>" name="taskhours" required="">
-                                                                                    <option value="">Seleccione las Horas</option>
+                                                                                    <option value="">Seleccione las horas</option>
                                                                                     <option value="1" <?php if($task->getTaskHours() == '1') echo 'selected'; ?>>1 hora</option>
                                                                                     <option value="2" <?php if($task->getTaskHours() == '2') echo 'selected'; ?>>2 horas</option>
                                                                                     <option value="3" <?php if($task->getTaskHours() == '4') echo 'selected'; ?>>4 horas</option>

@@ -1,5 +1,7 @@
 <?php
     $user = $this->d['user'];
+    $tView = $this->d['tView'];
+    $lView = $this->d['lView'];
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +20,7 @@
     <link rel="stylesheet" href="<?php echo constant('URL'); ?>assets/css/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="<?php echo constant('URL'); ?>assets/css/css/app.css">
     <link rel="stylesheet" href="<?php echo constant('URL'); ?>assets/css/Footer-Basic-icons.css">
-    <link rel="stylesheet" href="<?php echo constant('URL'); ?>assets/css/pages/main.css">
+    <link rel="stylesheet" href="<?php echo constant('URL'); ?>assets/css/pages/home.css">
 </head>
 
 <body id="page-top">
@@ -28,7 +30,7 @@
         <!-- Llamada al Sidebar -->
         <?php require 'sidebar.php'; ?>
 
-        <div id="main" class="layout-navbar">
+        <d id="main" class="layout-navbar">
 
             <!-- Llamada al Header -->
             <?php require 'header.php'; ?>
@@ -60,6 +62,7 @@
                     <!-- Contenido de la Página -->
                     <?php $this->showMessages();?>
                     <div class="row">
+
                         <!-- Imagen del Perfil -->
                         <div class="col-lg-4">
                             <div class="card mb-3">
@@ -69,8 +72,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Datos del Perfil -->
-                        <div class="col-lg-8">
+
+                    <div class="col-lg-8">
+
+                            <!-- Datos del Perfil -->
                             <div class="card shadow mb-3">
                                 <div class="card-header py-3">
                                     <p class="fw-bold text-primary m-0">Datos básicos</p>
@@ -153,15 +158,15 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <div class="mb-3"><label class="form-label" for="new-password"><strong>Nueva contraseña</strong></label>
-                                                    <div id="new-password-div" class="form-group position-relative has-icon-left"><input class="form-control" type="password" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="left" id="new-password" name="new-password" placeholder="Nueva contraseña" required="" minlength="8" title="La contraseña debe tener al menos 8 caracteres, 1 minúscula, 1 mayúsculas, 1 número y 1 símbolo." autocomplete="off">
+                                                <div id="new-password-div" class="mb-3"><label class="form-label" for="new-password"><strong>Nueva contraseña</strong></label>
+                                                    <div class="form-group position-relative has-icon-left"><input class="form-control" type="password" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="left" id="new-password" name="new-password" placeholder="Nueva contraseña" required="" minlength="8" title="La contraseña debe tener al menos 8 caracteres, 1 minúscula, 1 mayúsculas, 1 número y 1 símbolo." autocomplete="off">
                                                         <div class="form-control-icon"><i class="bi bi-shield-lock"></i></div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col">
-                                                <div class="mb-3"><label class="form-label" for="confirm-password"><strong>Confirmar contraseña</strong></label>
-                                                    <div id="confirm-password-div" class="form-group position-relative has-icon-left"><input class="form-control" type="password" id="confirm-password" name="confirm-password" placeholder="Confirmar contraseña" required="" minlength="8" autocomplete="off">
+                                                <div id="confirm-password-div" class="mb-3"><label class="form-label" for="confirm-password"><strong>Confirmar contraseña</strong></label>
+                                                    <div class="form-group position-relative has-icon-left"><input class="form-control" type="password" id="confirm-password" name="confirm-password" placeholder="Confirmar contraseña" required="" minlength="8" autocomplete="off">
                                                         <div class="form-control-icon"><i class="bi bi-shield-check"></i></div>
                                                     </div>
                                                 </div>
@@ -178,9 +183,10 @@
                 <!-- Footer -->
                 <?php require 'views/footer.php'; ?>
             </main>
+        </div>
     </div>
     <script src="<?php echo constant('URL'); ?>assets/js/js/bootstrap.bundle.min.js"></script>
-    <script src="<?php echo constant('URL'); ?>assets/js/vendors/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="<?php echo constant('URL'); ?>assets/js/vendors/sweetalert2/sweetalert2.all.js"></script>
     <script src="<?php echo constant('URL'); ?>assets/js/bs-init.js"></script>
     <script src="<?php echo constant('URL'); ?>assets/js/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="<?php echo constant('URL'); ?>assets/js/js/mains.js"></script>

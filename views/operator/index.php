@@ -2,6 +2,7 @@
     $user = $this->d['user'];
     $tasks = $this->d['tasks'];
     $tView = $this->d['tView'];
+    $lView = $this->d['lView'];
 ?>
 
 <!DOCTYPE html>

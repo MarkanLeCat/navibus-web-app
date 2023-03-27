@@ -1,5 +1,7 @@
 <?php
     $user = $this->d['user'];
+    $tView = $this->d['tView'];
+    $lView = $this->d['lView'];
 ?>
 
 <!DOCTYPE html>
@@ -73,69 +75,68 @@
 
                     <div class="col-lg-8">
 
-                            <!-- Datos del Perfil -->
-                            <div class="card shadow mb-3">
-                                <div class="card-header py-3">
-                                    <p class="fw-bold text-primary m-0">Datos básicos</p>
-                                </div>
+                        <!-- Datos del Perfil -->
+                        <div class="card shadow mb-3">
+                            <div class="card-header py-3">
+                                <p class="fw-bold text-primary m-0">Datos básicos</p>
+                            </div>
 
-                                <!-- Formulario de Usuario -->
-                                <div class="card-body">
-                                    <form action="<?php echo constant('URL'); ?>supervisor/updateUserData" method="POST">
-                                        <div class="row">
-                                            <!-- Input nombre de usuario -->
-                                            <div class="col">
-                                                <div class="mb-3">
-                                                    <label class="form-label form-label" for="username"><strong>Nombre de usuario</strong></label>
-                                                    <div class="form-group position-relative has-icon-left"><input class="form-control form-control" type="text" id="username" name="username" disabled="" autocomplete="off" value="<?php echo $user->getUsername(); ?>">
-                                                        <div class="form-control-icon"><i class="bi bi-person"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Input correo electrónico -->
-                                            <div class="col">
-                                                <div class="mb-3">
-                                                    <label class="form-label form-label" for="email"><strong>Correo electrónico</strong></label>
-                                                    <div class="form-group position-relative has-icon-left"><input class="form-control form-control" type="email" id="email" name="email" autocomplete="off" disabled="" value="<?php echo $user->getEmail();?>">
-                                                        <div class="form-control-icon"><i class="bi bi-envelope"></i></div>
-                                                    </div>
+                            <!-- Formulario de Usuario -->
+                            <div class="card-body">
+                                <form action="<?php echo constant('URL'); ?>supervisor/updateUserData" method="POST">
+                                    <div class="row">
+                                        <!-- Input nombre de usuario -->
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label class="form-label form-label" for="username"><strong>Nombre de usuario</strong></label>
+                                                <div class="form-group position-relative has-icon-left"><input class="form-control form-control" type="text" id="username" name="username" disabled="" autocomplete="off" value="<?php echo $user->getUsername(); ?>">
+                                                    <div class="form-control-icon"><i class="bi bi-person"></i></div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <!-- Input nombre -->
-                                            <div class="col">
-                                                <div class="mb-3">
-                                                    <label class="form-label form-label" for="first_name"><strong>Nombre</strong></label>
-                                                    <div id="firstnameDiv" class="form-group position-relative has-icon-left"><input class="form-control form-control" type="text" id="first_name" name="firstname" value="<?php echo $user->getName();?>" autocomplete="off" required="">
-                                                        <div class="form-control-icon"><i class="bi bi-person"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Input apellido -->
-                                            <div class="col">
-                                                <div class="mb-3">
-                                                    <label class="form-label form-label" for="last_name"><strong>Apellido</strong></label>
-                                                    <div id="lastnameDiv" class="form-group position-relative has-icon-left"><input class="form-control form-control" type="text" id="last_name" name="lastname" autocomplete="off" required="" value="<?php echo $user->getLastname();?>">
-                                                        <div class="form-control-icon"><i class="bi bi-person"></i></div>
-                                                    </div>
+                                        <!-- Input correo electrónico -->
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label class="form-label form-label" for="email"><strong>Correo electrónico</strong></label>
+                                                <div class="form-group position-relative has-icon-left"><input class="form-control form-control" type="email" id="email" name="email" autocomplete="off" disabled="" value="<?php echo $user->getEmail();?>">
+                                                    <div class="form-control-icon"><i class="bi bi-envelope"></i></div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <!-- Input número de teléfono -->
-                                            <div class="col">
-                                                <div class="mb-3">
-                                                    <label class="form-label form-label" for="first_name"><strong>Número de teléfono</strong></label>
-                                                    <div id="phoneDiv" class="form-group position-relative has-icon-left"><input class="form-control form-control" type="text" id="phone" name="phone" value="<?php echo $user->getPhone();?>" autocomplete="off" required="">
-                                                        <div class="form-control-icon"><i class="bi bi-telephone"></i></div>
-                                                    </div>
+                                    </div>
+                                    <div class="row">
+                                        <!-- Input nombre -->
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label class="form-label form-label" for="first_name"><strong>Nombre</strong></label>
+                                                <div id="firstnameDiv" class="form-group position-relative has-icon-left"><input class="form-control form-control" type="text" id="first_name" name="firstname" value="<?php echo $user->getName();?>" autocomplete="off" required="">
+                                                    <div class="form-control-icon"><i class="bi bi-person"></i></div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mb-3"><button id="save-basics" class="btn btn-primary btn-sm" type="submit">Guardar cambios</button></div>
-                                    </form>
-                                </div>
+                                        <!-- Input apellido -->
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label class="form-label form-label" for="last_name"><strong>Apellido</strong></label>
+                                                <div id="lastnameDiv" class="form-group position-relative has-icon-left"><input class="form-control form-control" type="text" id="last_name" name="lastname" autocomplete="off" required="" value="<?php echo $user->getLastname();?>">
+                                                    <div class="form-control-icon"><i class="bi bi-person"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <!-- Input número de teléfono -->
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label class="form-label form-label" for="first_name"><strong>Número de teléfono</strong></label>
+                                                <div id="phoneDiv" class="form-group position-relative has-icon-left"><input class="form-control form-control" type="text" id="phone" name="phone" value="<?php echo $user->getPhone();?>" autocomplete="off" required="">
+                                                    <div class="form-control-icon"><i class="bi bi-telephone"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3"><button id="save-basics" class="btn btn-primary btn-sm" type="submit">Guardar cambios</button></div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -181,6 +182,7 @@
                 <!-- Footer -->
                 <?php require 'views/footer.php'; ?>
             </main>
+        </div>
     </div>
     <script src="<?php echo constant('URL'); ?>assets/js/js/bootstrap.bundle.min.js"></script>
     <script src="<?php echo constant('URL'); ?>assets/js/vendors/sweetalert2/sweetalert2.all.js"></script>

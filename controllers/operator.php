@@ -23,12 +23,14 @@ class Operator extends SessionController{
     //Se obtienen las tareas del usuario
     $tasks = $this->getTasks();
     $tView = true;
+    $lView = false;
 
     //Se renderiza la vista del panel de tareas, enviando los datos del usuario y las tareas
     $this->view->render('operator/index', [
       'user' => $this->user,
       'tasks' => $tasks,
-      'tView' => $tView
+      'tView' => $tView,
+      'lView' => $lView
     ]);
   }
 
@@ -39,22 +41,29 @@ class Operator extends SessionController{
     //Se obtienen los lapsos del usuario
     $lapses = $this->getLapses();
     $lView = true;
+    $tview = false;
 
     //Se renderiza la vista de lapsos, enviando los datos del usuario y los lapsos
     $this->view->render('operator/lapses', [
       'user' => $this->user,
       'lapses' => $lapses,
       'tasks' => $lapsesTasksModel,
-      'lView' => $lView
+      'lView' => $lView,
+      'tView' => $tView
     ]);
   }
 
   //Método para renderizar la vista de perfil
   function profile(){
     error_log("OPERATOR::profile() ");
+
+    $lView = false;
+    $tView = false;
     //Se renderiza la vista de perfil, enviando los datos del usuario
     $this->view->render('operator/profile', [
-      'user' => $this->user
+      'user' => $this->user,
+      'lView' => $lView,
+      'tView' => $tView
     ]);
   }
 

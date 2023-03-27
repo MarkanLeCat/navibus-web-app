@@ -24,6 +24,7 @@ class Supervisor extends SessionController{
     $users = $this->getUsers();
     $lapses = $this->getLapses();
     $tView = true;
+    $lView = false;
 
     //Se renderiza la vista del panel de tareas, enviando los datos del usuario y las tareas
     $this->view->render('supervisor/index', [
@@ -31,7 +32,8 @@ class Supervisor extends SessionController{
       'tasks' => $tasks,
       'users' => $users,
       'lapses' => $lapses,
-      'tView' => $tView
+      'tView' => $tView,
+      'lView' => $lView
     ]);
   }
 
@@ -43,6 +45,7 @@ class Supervisor extends SessionController{
     $users = $this->getUsers();
     $lapses = $this->getLapses();
     $lView = true;
+    $tView = false;
 
     //Se renderiza la vista de lapsos, enviando los datos del usuario y los lapsos
     $this->view->render('supervisor/lapses', [
@@ -50,16 +53,22 @@ class Supervisor extends SessionController{
       'tasks' => $lapsesTasksModel,
       'users' => $users,
       'lapses' => $lapses,
-      'lView' => $lView
+      'lView' => $lView,
+      'tView' => $tView
     ]);
   }
 
   //Método para renderizar la vista de perfil
   function profile(){
     error_log("Supervisor::profile() ");
+    
+    $lView = false;
+    $tView = false;
     //Se renderiza la vista de perfil, enviando los datos del usuario
     $this->view->render('supervisor/profile', [
-      'user' => $this->user
+      'user' => $this->user,
+      'lView' => $lView,
+      'tView' => $tView
     ]);
   }
 

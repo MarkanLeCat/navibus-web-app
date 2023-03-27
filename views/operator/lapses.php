@@ -3,6 +3,7 @@
     $lapses = $this->d['lapses'];
     $tasks = $this->d['tasks'];
     $lView = $this->d['lView'];
+    $tView = $this->d['tView'];
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Panel de tareas - Navibus</title>
+    <title>Panel de lapsos - Navibus</title>
     <link rel="stylesheet" href="<?php echo constant('URL'); ?>assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo constant('URL'); ?>assets/css/bootstrap-icons.css">
     <link rel="stylesheet" href="<?php echo constant('URL'); ?>assets/css/Iconly---Bold.css">

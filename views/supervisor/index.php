@@ -4,6 +4,7 @@
     $users = $this->d['users'];
     $lapses = $this->d['lapses'];
     $tView = $this->d['tView'];
+    $lView = $this->d['lView'];
 ?>
 
 <!DOCTYPE html>
@@ -372,7 +373,7 @@
                                                                                 <option value="">Seleccione el usuario</option>
                                                                                 <?php foreach ($users as $user){ 
                                                                                     if($user->getRole() !== 1 && $user->getRole() !== 4) { ?>
-                                                                                        <option value="<?php echo $user->getId(); ?>" <?php if($task->getUserFirstName() === $user->getName() && $task->getUserLastName() === $user->getLastname() && $task->getUserPosition() === $user->getPosition()) echo 'selected'; ?>><?php echo $user->getName(); ?> <?php echo $user->getLastname(); ?> - <?php echo $user->getPosition(); ?></option>
+                                                                                        <option value="<?php echo $user->getId(); ?>" <?php if($task->getUserId() === $user->getId()) echo 'selected'; ?>><?php echo $user->getName(); ?> <?php echo $user->getLastname(); ?> - <?php echo $user->getPosition(); ?></option>
                                                                                     <?php
                                                                                     }
                                                                                 }
@@ -602,7 +603,7 @@
                                                                                 <option value="">Seleccione el usuario</option>
                                                                                 <?php foreach ($users as $user){ 
                                                                                     if($user->getRole() !== 1 && $user->getRole() !== 4) { ?>
-                                                                                        <option value="<?php echo $user->getId(); ?>" <?php if($task->getUserFirstName() === $user->getName() && $task->getUserLastName() === $user->getLastname() && $task->getUserPosition() === $user->getPosition()) echo 'selected'; ?>><?php echo $user->getName(); ?> <?php echo $user->getLastname(); ?> - <?php echo $user->getPosition(); ?></option>
+                                                                                        <option value="<?php echo $user->getId(); ?>" <?php if($task->getUserId() === $user->getId()) echo 'selected'; ?>><?php echo $user->getName(); ?> <?php echo $user->getLastname(); ?> - <?php echo $user->getPosition(); ?></option>
                                                                                     <?php
                                                                                     }
                                                                                 }
@@ -615,7 +616,7 @@
                                                                     <div class="mb-3">
                                                                         <label class="form-label" for="taskHours-<?php echo $task->getTaskId(); ?>"><strong>Cantidad estimada de horas</strong></label>
                                                                         <div class="form-group"><select class="form-select" id="taskHours-<?php echo $task->getTaskId(); ?>" name="taskhours" required="">
-                                                                                <option value="">Seleccione las Horas</option>
+                                                                                <option value="">Seleccione las horas</option>
                                                                                 <option value="1" <?php if($task->getHours() == '1') echo 'selected'; ?>>1 hora</option>
                                                                                 <option value="2" <?php if($task->getHours() == '2') echo 'selected'; ?>>2 horas</option>
                                                                                 <option value="3" <?php if($task->getHours() == '4') echo 'selected'; ?>>4 horas</option>
@@ -832,7 +833,7 @@
                                                                                 <option value="">Seleccione el usuario</option>
                                                                                 <?php foreach ($users as $user){ 
                                                                                     if($user->getRole() !== 1 && $user->getRole() !== 4) { ?>
-                                                                                        <option value="<?php echo $user->getId(); ?>" <?php if($task->getUserFirstName() === $user->getName() && $task->getUserLastName() === $user->getLastname() && $task->getUserPosition() === $user->getPosition()) echo 'selected'; ?>><?php echo $user->getName(); ?> <?php echo $user->getLastname(); ?> - <?php echo $user->getPosition(); ?></option>
+                                                                                        <option value="<?php echo $user->getId(); ?>" <?php if($task->getUserId() === $user->getId()) echo 'selected'; ?>><?php echo $user->getName(); ?> <?php echo $user->getLastname(); ?> - <?php echo $user->getPosition(); ?></option>
                                                                                     <?php
                                                                                     }
                                                                                 }
@@ -845,7 +846,7 @@
                                                                     <div class="mb-3">
                                                                         <label class="form-label" for="taskHours-<?php echo $task->getTaskId(); ?>"><strong>Cantidad estimada de horas</strong></label>
                                                                         <div class="form-group"><select class="form-select" id="taskHours-<?php echo $task->getTaskId(); ?>" name="taskhours" required="">
-                                                                                <option value="">Seleccione las Horas</option>
+                                                                                <option value="">Seleccione las horas</option>
                                                                                 <option value="1" <?php if($task->getHours() == '1') echo 'selected'; ?>>1 hora</option>
                                                                                 <option value="2" <?php if($task->getHours() == '2') echo 'selected'; ?>>2 horas</option>
                                                                                 <option value="3" <?php if($task->getHours() == '4') echo 'selected'; ?>>4 horas</option>
@@ -1062,7 +1063,7 @@
                                                                                 <option value="">Seleccione el usuario</option>
                                                                                 <?php foreach ($users as $user){ 
                                                                                     if($user->getRole() !== 1 && $user->getRole() !== 4) { ?>
-                                                                                        <option value="<?php echo $user->getId(); ?>" <?php if($task->getUserFirstName() === $user->getName() && $task->getUserLastName() === $user->getLastname() && $task->getUserPosition() === $user->getPosition()) echo 'selected'; ?>><?php echo $user->getName(); ?> <?php echo $user->getLastname(); ?> - <?php echo $user->getPosition(); ?></option>
+                                                                                        <option value="<?php echo $user->getId(); ?>" <?php if($task->getUserId() === $user->getId()) echo 'selected'; ?>><?php echo $user->getName(); ?> <?php echo $user->getLastname(); ?> - <?php echo $user->getPosition(); ?></option>
                                                                                     <?php
                                                                                     }
                                                                                 }
@@ -1075,7 +1076,7 @@
                                                                     <div class="mb-3">
                                                                         <label class="form-label" for="taskHours-<?php echo $task->getTaskId(); ?>"><strong>Cantidad estimada de horas</strong></label>
                                                                         <div class="form-group"><select class="form-select" id="taskHours-<?php echo $task->getTaskId(); ?>" name="taskhours" required="">
-                                                                                <option value="">Seleccione las Horas</option>
+                                                                                <option value="">Seleccione las horas</option>
                                                                                 <option value="1" <?php if($task->getHours() == '1') echo 'selected'; ?>>1 hora</option>
                                                                                 <option value="2" <?php if($task->getHours() == '2') echo 'selected'; ?>>2 horas</option>
                                                                                 <option value="3" <?php if($task->getHours() == '4') echo 'selected'; ?>>4 horas</option>

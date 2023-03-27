@@ -115,20 +115,21 @@ class Lapses extends SessionController {
   //Método para actualizar los datos de un lapso
   function updateLapse(){
     error_log("Lapses::updateLapse() ");
-    if(!$this->existPOST(['lapseid', 'lapsename', 'lapsecategory', 'lapseinitialdate', 'lapseenddate'])){
+    if(!$this->existPOST(['lapseid', 'lapseinitialold', 'lapsename', 'lapsecategory', 'lapseinitialdate', 'lapseenddate'])){
       error_log("Lapses::updateLapse() -> No se recibieron los datos del lapso");
       $this->redirect('supervisor/lapses', ['error' => Errors::ERROR_SUPERVISOR_UPDATELAPSE]);
       return;
     }
 
     $id = $this->getPost('lapseid');
+    $initialold = $this->getPost('lapseinitialold');
     $name = $this->getPost('lapsename');
     $ship = 1;
     $category = $this->getPost('lapsecategory');
     $initial = $this->getPost('lapseinitialdate');
     $end = $this->getPost('lapseenddate');
 
-    if(empty($id) || empty($name) || empty($category) || empty($initial) || empty($end)){
+    if(empty($id) || empty($initialold) || empty($name) || empty($category) || empty($initial) || empty($end)){
       error_log("Lapses::updateLapse() -> No se recibieron los datos del lapso");
       $this->redirect('supervisor/lapses', ['error' => Errors::ERROR_SUPERVISOR_UPDATELAPSE_EMPTY]);
       return;
@@ -141,8 +142,8 @@ class Lapses extends SessionController {
       return;
     }
 
-    //Comprobar que el valor de $initial no sea menor que la fecha actual
-    if($initial < date("Y-m-d")){
+    //Comprobar que el valor de $initial no sea menor que la fecha inicial actual
+    if($initial < $initialold){
       error_log("Lapses::updateLapse() -> La fecha inicial no puede ser menor que la fecha actual");
       $this->redirect('supervisor/lapses', ['error' => Errors::ERROR_SUPERVISOR_UPDATELAPSE_INITIALDATE]);
       return;
@@ -184,7 +185,7 @@ class Lapses extends SessionController {
     }
 
     //Comprobar que no se solapen con otros lapsos de su misma categoría
-    if($this->model->checkLapseOverlapException($initial, $end, $category, $id)){
+    if(!$this->model->checkLapseOverlapException($initial, $end, $category, $id)){
       error_log("Lapses::updateLapse() -> El lapso se solapa con otro lapso de la misma categoría");
       $this->redirect('supervisor/lapses', ['error' => Errors::ERROR_SUPERVISOR_UPDATELAPSE_OVERLAP]);
       return;
