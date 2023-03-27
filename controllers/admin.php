@@ -150,8 +150,8 @@ class Admin extends SessionController{
     $db->import();
   }
 
-  function newUser(){
-    error_log("Admin::newUser() ");
+  function createUser(){
+    error_log("Admin::createUser() ");
     if (!$this->existPOST('userfirstname', 'userlastname', 'userrole', 'username', 'userpassword', 'useremail', 'userposition', 'userphone')) {
       $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_NEWUSER]);
       return;
@@ -230,11 +230,11 @@ class Admin extends SessionController{
     $newUser->setPosition($position);
     $newUser->setPhone($phone);
     
-    if($user->exists($username)){
+    if($newUser->exists($username)){
       //$this->errorAtSignup('Error al registrar el usuario. Elige un nombre de usuario diferente');
       $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_NEWUSER_EXISTS]);
       //return;
-    }else if($user->save()){
+    }else if($newUser->save()){
       //$this->view->render('login/index');
       $this->redirect('admin', ['success' => Success::SUCCESS_ADMIN_NEWUSER]);
     }else{
