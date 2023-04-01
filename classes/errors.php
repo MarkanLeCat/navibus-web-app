@@ -23,6 +23,7 @@ class Errors{
     const ERROR_ADMIN_NEWUSER_PASSWEEK         = "96fe81a2ea075fc8c0aeb10ce0f076f7";
     const ERROR_ADMIN_NEWUSER_INVALIDEMAIL         = "2452067sdsjr8rt3i9d8627t4hdjdh";
     const ERROR_ADMIN_NEWUSER_EXISTS            = "1f8f0ae8963b16403c3ec9ebb851f156";
+    const ERROR_ADMIN_NEWUSER_EXISTSEMAIL            = "fgw284y739tgjh3ur46y4373673728";
     const ERROR_ADMIN_NEWUSER_EMAILFORMAT         = "d68c2ffd28c4c638caf1c07eb8418eb4";
     const ERROR_ADMIN_UPDATE                     = "c2bc0aeac2e6eebb492a8dd6ec9e16d0";
     const ERROR_ADMIN_USERPROFILE_NOTEXIST            = "aa3728f012b9c8a866206a6bccf9ad20";
@@ -35,6 +36,7 @@ class Errors{
     const ERROR_ADMIN_UPDATEUSERPASSWORD_ISNOTTHESAME = "a562eaf506b8730621657d8a35cffb78";
     const ERROR_ADMIN_UPDATEADTIONALUSER              = "1075f709e84d2ee0fd7f24c6f082dcce";
     const ERROR_ADMIN_UPDATEADTIONALUSER_EMPTY        = "27dd3689a220f497b1a4d177676aaa5d";
+    const ERROR_ADMIN_UPDATEADTIONALUSER_POSITIONLENGTH = "27837584jufh7347gi3y9r3yh48d";
     const ERROR_ADMIN_DISABLEUSER                     = "bafceb8faca509158e2e7fe239b33b4d";
     const ERROR_ADMIN_ENABLEUSER                     = "1df3134a183f3bd2413a5370d27b99cf";
     const ERROR_SUPERVISOR_UPDATE                     = "43754e84ce3e5c18d8cac320504c80a2";
@@ -102,6 +104,7 @@ class Errors{
             Errors::ERROR_ADMIN_NEWUSER_PASSWEEK => 'La contraseña es muy débil',
             Errors::ERROR_ADMIN_NEWUSER_INVALIDEMAIL  => 'Ingrese un correo electrónico válido',
             Errors::ERROR_ADMIN_NEWUSER_EXISTS      => 'El nombre de usuario ya existe, intente otro',
+            Errors::ERROR_ADMIN_NEWUSER_EXISTSEMAIL      => 'El correo electrónico ya existe, intente otro',
             Errors::ERROR_ADMIN_NEWUSER_EMAILFORMAT => 'Ingrese un correo electrónico válido',
             Errors::ERROR_ADMIN_UPDATE              => 'Hubo un error al intentar actualizar los datos',
             Errors::ERROR_ADMIN_USERPROFILE_NOTEXIST  => 'El usuario no existe',
@@ -114,6 +117,7 @@ class Errors{
             Errors::ERROR_ADMIN_UPDATEUSERPASSWORD_ISNOTTHESAME => 'Las contraseñas no coinciden',
             Errors::ERROR_ADMIN_UPDATEADTIONALUSER       => 'Hubo un error al intentar actualizar los datos',
             Errors::ERROR_ADMIN_UPDATEADTIONALUSER_EMPTY => 'Uno o más campos estaban vacíos',
+            Errors::ERROR_ADMIN_UPDATEADTIONALUSER_POSITIONLENGTH => 'El cargo superó el límite de caracteres',
             Errors::ERROR_ADMIN_DISABLEUSER              => 'Hubo un error al intentar deshabilitar el usuario',
             Errors::ERROR_ADMIN_ENABLEUSER               => 'Hubo un error al intentar habilitar el usuario',
             Errors::ERROR_SUPERVISOR_UPDATE               => 'No se pueden actualizar los datos',

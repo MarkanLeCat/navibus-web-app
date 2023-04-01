@@ -1,6 +1,6 @@
 <?php
 
-class JoinLapsesModel extends Model {
+class JoinStatsModel extends Model {
 
   private $lapseid;
   private $lapsename;
@@ -130,6 +130,107 @@ class JoinLapsesModel extends Model {
     }
   }
 
+  //función para contar todas las tareas en total
+  public function countAllTasks(){
+    try{
+      $query = $this->query("SELECT COUNT(*) AS Total FROM tasks");
+
+      return $query->fetch(PDO::FETCH_ASSOC);
+    }catch(PDOException $e){
+      echo $e;
+    }
+  }
+
+  //función para sumar el total de horas de las tareas creadas
+  public function sumAllHours(){
+    try{
+      $query = $this->query("CALL SP_sumAllHours()");
+
+      return $query->fetch(PDO::FETCH_ASSOC);
+    }catch(PDOException $e){
+      echo $e;
+    }
+  }
+
+  //función para contar todas las tareas "Por hacer"
+  public function countAllTasksToDo(){
+    try{
+      $query = $this->query("SELECT COUNT(*) AS Total FROM tasks WHERE status_id = 1");
+
+      return $query->fetch(PDO::FETCH_ASSOC);
+    }catch(PDOException $e){
+      echo $e;
+    }
+  }
+
+  //función para contar todas las tareas "En curso"
+  public function countAllTasksInProgress(){
+    try{
+      $query = $this->query("SELECT COUNT(*) AS Total FROM tasks WHERE status_id = 2");
+
+      return $query->fetch(PDO::FETCH_ASSOC);
+    }catch(PDOException $e){
+      echo $e;
+    }
+  }
+
+  //función para contar todas las tareas "Finalizadas"
+  public function countAllTasksFinished(){
+    try{
+      $query = $this->query("SELECT COUNT(*) AS Total FROM tasks WHERE status_id = 3");
+
+      return $query->fetch(PDO::FETCH_ASSOC);
+    }catch(PDOException $e){
+      echo $e;
+    }
+  }
+
+  //funcion para contar el total de usuarios
+  public function countAllUsers(){
+    try{
+      $query = $this->query("SELECT COUNT(*) AS Total FROM users");
+
+      return $query->fetch(PDO::FETCH_ASSOC);
+    }catch(PDOException $e){
+      echo $e;
+    }
+  }
+
+  //Función para contar el total de usuarios supervisores
+  public function countAllSupervisors(){
+    try{
+      $query = $this->query("SELECT COUNT(*) AS Total FROM users WHERE role_id = 2");
+
+      return $query->fetch(PDO::FETCH_ASSOC);
+    }catch(PDOException $e){
+      echo $e;
+    }
+  }
+
+  //función para contar todos los usuarios tipo "Operador"
+  public function countAllOperators(){
+    try{
+      $query = $this->query("SELECT COUNT(*) AS Total FROM users WHERE role_id = 3");
+
+      return $query->fetch(PDO::FETCH_ASSOC);
+    }catch(PDOException $e){
+      echo $e;
+    }
+  }
+
+  
+
+  //función para contar todas las tareas "Aprobadas"
+  public function countAllTasksApproved(){
+    try{
+      $query = $this->query("SELECT COUNT(*) AS Total FROM tasks WHERE status_id = 4");
+
+      return $query->fetch(PDO::FETCH_ASSOC);
+    }catch(PDOException $e){
+      echo $e;
+    }
+  }
+
   public function from($array){
     $this->lapseid = $array['id'];
     $this->lapsename = $array['name'];
@@ -177,7 +278,7 @@ class JoinLapsesModel extends Model {
     $this->taskcategory = $array['category'];
     $this->statusid = $array['statusid'];
     $this->status = $array['status'];
-    $this->taskpriority = $array['priority'];
+    $this->taskinitial = $array['initial'];
     $this->taskuserid = $array['userid'];
     $this->taskuserfirstname = $array['userfirstname'];
     $this->taskuserlastname = $array['userlastname'];

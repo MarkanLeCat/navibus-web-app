@@ -34,6 +34,7 @@ include_once 'models/tasksmodel.php';
 include_once 'models/lapsesmodel.php';
 include_once "models/joinlapsesmodel.php";
 include_once "models/jointasksmodel.php";
+include_once "models/joinstatsmodel.php";
 
 $app = new App();
 

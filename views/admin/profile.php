@@ -50,7 +50,7 @@
                                 <div class="col-12 col-md-6 order-first order-md-2">
                                     <nav class="float-start float-md-end breadcrumb-header" aria-label="breadcrumb">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="<?php echo constant('URL'); ?>"><span>Panel de tareas</span></a></li>
+                                            <li class="breadcrumb-item"><a href="<?php echo constant('URL'); ?>"><span>Panel de usuarios</span></a></li>
                                             <li class="breadcrumb-item active" aria-current="page"><span>Perfil</span></li>
                                         </ol>
                                     </nav>
@@ -67,7 +67,7 @@
                         <div class="col-lg-4">
                             <div class="card mb-3">
                                 <div class="card-body text-center shadow card-user-image">
-                                    <img class="rounded-circle mb-3 mt-4" src="<?php echo constant('URL'); ?>assets/img/faces/default.png" width="160" height="160">
+                                    <img class="rounded-circle mb-3 mt-4" src="<?php echo constant('URL'); ?>assets/img/faces/default-admin.png" width="160" height="160">
                                     <h4 class="fw-bold text-secondary"><?php echo $user->getName();?> <?php echo $user->getLastname();?></h4>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
 
                                 <!-- Formulario de Usuario -->
                                 <div class="card-body">
-                                    <form action="<?php echo constant('URL'); ?>operator/updateUserData" method="POST">
+                                    <form action="<?php echo constant('URL'); ?>admin/updateAdminData" method="POST">
                                         <div class="row">
                                             <!-- Input nombre de usuario -->
                                             <div class="col">
@@ -136,43 +136,6 @@
                                             </div>
                                         </div>
                                         <div class="mb-3"><button id="save-basics" class="btn btn-primary btn-sm" type="submit">Guardar cambios</button></div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-12">
-                            <!-- Actualización de Contraseña -->
-                            <div class="card shadow">
-                                <div class="card-header py-3">
-                                    <p class="text-primary m-0 fw-bold">Actualizar contraseña</p>
-                                </div>
-                                <div class="card-body">
-                                    <form action="<?php echo constant('URL'); ?>operator/updateUserPassword" method="POST">
-                                        <div class="mb-3"><label class="form-label" for="current-password"><strong>Contraseña actual</strong></label>
-                                            <div id="current-password-div" class="form-group position-relative has-icon-left"><input class="form-control" type="password" id="current-password" name="current-password" placeholder="Contraseña actual" required="" minlength="8" title="La contraseña debe tener al menos 8 caracteres, 1 minúscula, 1 mayúsculas y 1 símbolo." autocomplete="off">
-                                                <div class="form-control-icon"><i class="bi bi-shield-shaded"></i></div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div id="new-password-div" class="mb-3"><label class="form-label" for="new-password"><strong>Nueva contraseña</strong></label>
-                                                    <div class="form-group position-relative has-icon-left"><input class="form-control" type="password" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="left" id="new-password" name="new-password" placeholder="Nueva contraseña" required="" minlength="8" title="La contraseña debe tener al menos 8 caracteres, 1 minúscula, 1 mayúsculas, 1 número y 1 símbolo." autocomplete="off">
-                                                        <div class="form-control-icon"><i class="bi bi-shield-lock"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div id="confirm-password-div" class="mb-3"><label class="form-label" for="confirm-password"><strong>Confirmar contraseña</strong></label>
-                                                    <div class="form-group position-relative has-icon-left"><input class="form-control" type="password" id="confirm-password" name="confirm-password" placeholder="Confirmar contraseña" required="" minlength="8" autocomplete="off">
-                                                        <div class="form-control-icon"><i class="bi bi-shield-check"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3"><button id="save-password" class="btn btn-primary btn-sm" type="submit">Cambiar contraseña</button></div>
                                     </form>
                                 </div>
                             </div>

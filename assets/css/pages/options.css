@@ -1,0 +1,25 @@
+.export-db {
+  padding-top: 1.5rem;
+}
+
+.export-db p {
+  font-size: 1.4rem;
+}
+
+.export-db button {
+  font-size: 1.4rem;
+  margin-top: 1.8rem;
+} 
+
+.import-db {
+  padding-top: 1.5rem;
+}
+
+.import-db p {
+  font-size: 1.4rem;
+}
+
+.import-db button {
+  font-size: 1rem;
+  margin-top: 1.8rem;
+} 

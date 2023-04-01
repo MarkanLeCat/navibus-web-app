@@ -80,7 +80,7 @@ forgotPassword.addEventListener('click', () => {
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-      Swal.fire('', '', 'success')
+      Swal.fire('Se ha notificado al administrador', '', 'success')
     }
   })
 });

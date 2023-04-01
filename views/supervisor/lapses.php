@@ -426,6 +426,20 @@
                                                                             </div>
                                                                         </div>
 
+                                                                        <!-- Input de la prioridad de la tarea -->
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label" for="taskPriority-<?php echo $task->getTaskId(); ?>"><strong>Prioridad</strong></label>
+                                                                            <div class="form-group">
+                                                                                <select class="form-select" id="taskPriority-<?php echo $task->getTaskId(); ?>" name="taskpriority" required="">
+                                                                                    <option value="">Seleccione la prioridad</option>
+                                                                                    <option value="Mínima" <?php if($task->getTaskPriority() === 'Mínima') echo 'selected'; ?>>Mínima</option>
+                                                                                    <option value="Media" <?php if($task->getTaskPriority() === 'Media') echo 'selected'; ?>>Media</option>
+                                                                                    <option value="Elevada" <?php if($task->getTaskPriority() === 'Elevada') echo 'selected'; ?>>Elevada</option>
+                                                                                    <option value="Urgente" <?php if($task->getTaskPriority() === 'Urgente') echo 'selected'; ?>>Urgente</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
                                                                         <!-- Input de la categoría de la tarea -->
                                                                         <div class="mb-3">
                                                                             <label class="form-label" for="taskCategory-<?php echo $task->getTaskId(); ?>"><strong>Categoría</strong></label>

@@ -100,25 +100,41 @@
                                     <p class="fw-bold text-primary m-0">Datos Adicionales</p>
                                 </div>
                                 <div class="card-body">
-                                    <form>
+
+                                    <!-- Sección para habilitar o deshabilitar usuario -->
+                                    <form action="<?php echo constant('URL'); ?>admin/updateUserStatus" method="POST">
+                                        <input type="hidden" name="id" value="<?php echo $editUser->getId(); ?>">
+
                                         <div class="row">
                                             <div class="col">
-                                                <div><label class="form-label form-label" for="userState"><strong>Estado del Usuario</strong></label>
+                                                <div>
+                                                    <label class="form-label form-label" for="userState"><strong>Estado del Usuario</strong></label>
                                                     <div class="d-flex user-state">
-                                                        <div class="state-icon"><i class="bi bi-toggle-on icon-enabled"></i></div>
-                                                        <p id="userState">Habilitado</p>
+                                                        <div class="state-icon"><i class="bi bi-toggle-<?php if($editUser->getStatus() == 1) {echo 'on icon-enabled';} else {echo 'off icon-disabled';} ?>"></i></div>
+                                                        <p id="userState"><?php if($editUser->getStatus() == 1) {echo 'Habilitado';} else {echo 'Deshabilitado';} ?></p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Deshabilitar Usuario</button></div>
+
+                                        <div class="mb-3">
+                                            <button class="btn btn-primary btn-sm" type="submit"><?php if($editUser->getStatus() == 1) {echo 'Deshabilitar usuario';} else {echo 'Habilitar usuario';} ?></button>
+                                        </div>
                                         <hr class="dropdown-divider">
                                     </form>
-                                    <form method="post">
+
+                                    <!-- Formulario de datos adicionales del usuario -->
+                                    <form action="<?php echo constant('URL'); ?>admin/updateUserAditionalData" method="POST">
+                                        <input type="hidden" name="id" value="<?php echo $editUser->getId(); ?>">
+
                                         <div class="row">
                                             <div class="col">
-                                                <div class="mb-3"><label class="form-label form-label" for="first_name"><strong>Cargo del Usuario</strong></label>
-                                                    <div class="form-group position-relative has-icon-left"><input class="form-control" type="text" id="position" name="position" value="Cargo" autocomplete="off" required="">
+
+                                                <!-- Input del cargo del usuario -->
+                                                <div class="mb-3">
+                                                    <label class="form-label form-label" for="first_name"><strong>Cargo del Usuario</strong></label>
+                                                    <div class="form-group position-relative has-icon-left">
+                                                        <input class="form-control" type="text" id="position" name="position" value="<?php echo $editUser->getPosition(); ?>" autocomplete="off" required="">
                                                         <div class="form-control-icon"><i class="bi bi-briefcase"></i></div>
                                                     </div>
                                                 </div>
@@ -126,16 +142,23 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
+
+                                                <!-- Input del rol del usuario -->
                                                 <div class="mb-3"><label class="form-label form-label" for="first_name"><strong>Rol del Usuario</strong></label>
-                                                    <div class="form-group position-relative has-icon-left"><select class="form-select" required="" name="role">
-                                                            <option value="3" selected="">Operador</option>
-                                                            <option value="2">Supervisor</option>
-                                                            <option value="4">Administrativo</option>
-                                                        </select></div>
+                                                    <div class="form-group position-relative has-icon-left">
+                                                        <select class="form-select" required="" name="role">
+                                                            <option value="2" <?php if($editUser->getRole() == 2) echo 'selected'; ?>>Supervisor</option>
+                                                            <option value="3" <?php if($editUser->getRole() == 3) echo 'selected'; ?>>Operador</option>
+                                                            <option value="4" <?php if($editUser->getRole() == 4) echo 'selected'; ?>>Administrativo</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Guardar Cambios</button></div>
+
+                                        <div class="mb-3">
+                                            <button class="btn btn-primary btn-sm" type="submit">Guardar Cambios</button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -153,6 +176,8 @@
                                 <div class="card-body">
                                     <form action="<?php echo constant('URL'); ?>admin/updateUserData" method="POST">
                                         <div class="row">
+                                            <input type="hidden" name="id" value="<?php echo $editUser->getId(); ?>">
+
                                             <!-- Input nombre de usuario -->
                                             <div class="col">
                                                 <div class="mb-3">
@@ -222,6 +247,7 @@
                                 </div>
                                 <div class="card-body">
                                     <form action="<?php echo constant('URL'); ?>admin/updateUserPassword" method="POST">
+                                        <input type="hidden" name="id" value="<?php echo $editUser->getId(); ?>">
                                         
                                         <div class="row">
                                             <div class="col-12">

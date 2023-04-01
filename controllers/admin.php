@@ -76,8 +76,9 @@ class Admin extends SessionController{
   function profile(){
     error_log("Admin::profile() ");
     
+    $oView = false;
+    $uView = false;
     $lView = false;
-    $tView = false;
     //Se renderiza la vista de perfil, enviando los datos del usuario
     $this->view->render('admin/profile', [
       'user' => $this->user,
@@ -139,17 +140,38 @@ class Admin extends SessionController{
   }
 
   //método para exportar la base de datos
-  function export(){
+  function createDBBackup(){
     $db = new Database();
-    $db->export();
+    $db->exportDB();
   }
 
-  //método para importar la base de datos
-  function import(){
-    $db = new Database();
-    $db->import();
+  //método para importar un backup de la base de datos
+  function importDBBackup(){
+    if(isset($_POST["import"])){
+      if($_FILES['database']['name'] != ''){
+        $array = explode('.', $_FILES['database']['name']);
+        $extension = end($array);
+        if($extension == 'sql'){
+          $db = new Database();
+          $pdo = $db->connect();
+          $templine = '';
+          $lines = file($_FILES["database"]["tmp_name"]);
+          foreach($lines as $line){
+              if(substr($line, 0, 2) == '--' || $line == ''){
+                  continue;
+              }
+              $templine .= $line;
+              if(substr(trim($line), -1, 1) == ';'){
+                  $pdo->query($templine) or print('Error performing query \'<strong>' . $templine . '\': ' . $pdo->error . '<br /><br />');
+                  $templine = '';
+              }
+          }
+        }
+      }
+    }
   }
 
+  //Función para crear un nuevo usuario
   function createUser(){
     error_log("Admin::createUser() ");
     if (!$this->existPOST('userfirstname', 'userlastname', 'userrole', 'username', 'userpassword', 'useremail', 'userposition', 'userphone')) {
@@ -231,18 +253,238 @@ class Admin extends SessionController{
     $newUser->setPhone($phone);
     
     if($newUser->exists($username)){
-      //$this->errorAtSignup('Error al registrar el usuario. Elige un nombre de usuario diferente');
       $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_NEWUSER_EXISTS]);
       //return;
-    }else if($newUser->save()){
-      //$this->view->render('login/index');
+    } else if($newUser->existsEmail($email)){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_NEWUSER_EXISTSEMAIL]);
+      //return;
+    } else if($newUser->save()){
       $this->redirect('admin', ['success' => Success::SUCCESS_ADMIN_NEWUSER]);
     }else{
-      /* $this->errorAtSignup('Error al registrar el usuario. Inténtalo más tarde');
-      return; */
       $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_NEWUSER]);
     }
-}
+  }
 
+  //Función para actualizar los datos del admin
+  function updateAdminData(){
+    error_log("Admin::updateAdminData() ");
+    //Se verifica que se hayan recibido los datos del formulario
+    if(!$this->existPOST(['firstname', 'lastname', 'phone'])){
+      $this->redirect('admin/profile', ['error' => Errors::ERROR_ADMIN_UPDATE]);
+      return;
+    }
+
+    $firstname = $this->getPost('firstname');
+    $lastname = $this->getPost('lastname');
+    $phone = $this->getPost('phone');
+
+    if(empty($firstname) || empty($lastname) || empty($phone)){
+      $this->redirect('admin/profile', ['error' => Errors::ERROR_ADMIN_NEWUSER_EMPTY]);
+      return;
+    }
+
+    $this->user->setName($firstname);
+    $this->user->setLastname($lastname);
+    $this->user->setPhone($phone);
+
+    if($this->user->update()){
+      $this->redirect('admin/profile', ['success' => Success::SUCCESS_ADMIN_UPDATE]);
+    }else{
+      //error
+    }
+  }
+
+  //Método para actualizar los datos de un usuario
+  function updateUserData(){
+    error_log("Admin::updateUserData() ");
+    //Se verifica que se hayan recibido los datos del formulario
+    if(!$this->existPOST(['id', 'username', 'email', 'firstname', 'lastname', 'phone'])){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_UPDATEUSER]);
+      return;
+    }
+
+    $userid = $this->getPost('id');
+    $username = $this->getPost('username');
+    $email = $this->getPost('email');
+    $firstname = $this->getPost('firstname');
+    $lastname = $this->getPost('lastname');
+    $phone = $this->getPost('phone');
+
+    if(empty($userid) || empty($username) || empty($email) || empty($firstname) || empty($lastname) || empty($phone)){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_UPDATEUSER_EMPTY]);
+      return;
+    }
+    
+    //Validar que el usernameno excenda los 20 caractéres
+    if(strlen($username) > 20){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_NEWUSER_USERNAMELENGTH]);
+      return;
+    }
+    
+    //Validar que el email no excenda los 50 caractéres
+    if(strlen($email) > 50){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_NEWUSER_EMAILLENGTH]);
+      return;
+    }
+
+    //Validar que el nombre no excenda los 20 caractéres
+    if(strlen($firstname) > 20){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_NEWUSER_NAMELENGTH]);
+      return;
+    }
+
+    //Validar que el apellido no excenda los 20 caractéres
+    if(strlen($lastname) > 20){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_NEWUSER_LASTNAMELENGTH]);
+      return;
+    }
+
+    //Validar que el teléfono no excenda los 20 caractéres
+    if(strlen($phone) > 20){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_NEWUSER_PHONELENGTH]);
+      return;
+    }
+
+    //Validar que el correo sea válido
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_NEWUSER_INVALIDEMAIL]);
+      return;
+    }
+
+    $user = $this->getUser($userid);
+
+    $user->setUsername($username);
+    $user->setEmail($email);
+    $user->setName($firstname);
+    $user->setLastname($lastname);
+    $user->setPhone($phone);
+
+    if($user->existsExcept($userid, $username)){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_NEWUSER_EXISTS]);
+      //return;
+    } else if($user->existsEmailExcept($userid, $email)){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_NEWUSER_EXISTSEMAIL]);
+      //return;
+    } else if($user->updateForAdmin()){
+      $this->redirect('admin', ['success' => Success::SUCCESS_ADMIN_UPDATEUSER]);
+      //return;
+    }else{
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_UPDATEUSER]);
+    }
+  }
+
+  //Función para actualizar el status de un usuario
+  function updateUserStatus(){
+    error_log("Admin::updateUserStatus() ");
+    //Se verifica que se hayan recibido los datos del formulario
+    if(!$this->existPOST(['id'])){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_UPDATEADTIONALUSER]);
+      return;
+    }
+
+    $userid = $this->getPost('id');
+
+    if(empty($userid)){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_UPDATEADTIONALUSER_EMPTY]);
+      return;
+    }
+
+    $user = $this->getUser($userid);
+
+    if($user->getStatus() == 1){
+      $user->setStatus(0);
+    }else{
+      $user->setStatus(1);
+    }
+
+    if($user->updateStatus()){
+      if($user->getStatus() == 1){
+        $this->redirect('admin', ['success' => Success::SUCCESS_ADMIN_ENABLEUSER]);
+      }else{
+        $this->redirect('admin', ['success' => Success::SUCCESS_ADMIN_DISABLEUSER]);
+      }
+    }else{
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_UPDATEUSER]);
+    }
+  }
+
+  //Función para actualizar los datos adicionales del usuario
+  function updateUserAditionalData(){
+    error_log("Admin::updateUserAditionalData() ");
+    //Se verifica que se hayan recibido los datos del formulario
+    if(!$this->existPOST(['id', 'position', 'role'])){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_UPDATEADTIONALUSER]);
+      return;
+    }
+
+    $userid = $this->getPost('id');
+    $position = $this->getPost('position');
+    $role = $this->getPost('role');
+
+    if(empty($userid) || empty($position) || empty($role)){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_UPDATEADTIONALUSER_EMPTY]);
+      return;
+    }
+    
+    //Validar que el usernameno excenda los 20 caractéres
+    if(strlen($position) > 30){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_UPDATEADTIONALUSER_POSITIONLENGTH]);
+      return;
+    }
+
+    $user = $this->getUser($userid);
+
+    $user->setPosition($position);
+    $user->setRole($role);
+
+    if($user->updateForAdmin()){
+      $this->redirect('admin', ['success' => Success::SUCCESS_ADMIN_UPDATEADITIONALUSER]);
+      //return;
+    }else{
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_UPDATEADTIONALUSER]);
+    }
+  }
+
+  //Función para actualizar la contraseña del usuario
+  function updateUserPassword(){
+    error_log("Admin::updateUserPassword() ");
+
+    if(!$this->existPOST(['id', 'new-password', 'confirm-password'])){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_UPDATEUSERPASSWORD]);
+      return;
+    }
+
+    $userid = $this->getPost('id');
+    $new     = $this->getPost('new-password');
+    $confirm = $this->getPost('confirm-password');
+
+    if(empty($userid) || empty($new) || empty($confirm)){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_UPDATEUSERPASSWORD_EMPTY]);
+      return;
+    }
+
+    //Comprobar que el usuario haya escrito bien la contraseña
+    if($new !== $confirm){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_UPDATEUSERPASSWORD_ISNOTTHESAME]);
+      return;
+    }
+
+    //Validar que la contraseña posea mínimo 8 caracteres, una mayúscula, una minúscula, un número y un caracter especial
+    if(!preg_match('/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/', $new)){
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_UPDATEUSERPASSWORD_WEEKPASSWORD]);
+      return;
+    }
+
+    $user = $this->getUser($userid);
+    $user->setPassword($new, true);
+    
+    if($user->updateForAdmin()){
+      error_log("Admin::updateUserPassword-> Contraseña actualizada correctamente");
+      $this->redirect('admin', ['success' => Success::SUCCESS_ADMIN_UPDATEUSERPASSWORD]);
+    }else{
+      //error
+      $this->redirect('admin', ['error' => Errors::ERROR_ADMIN_UPDATEUSERPASSWORD]);
+    }
+  }
 }
 ?>

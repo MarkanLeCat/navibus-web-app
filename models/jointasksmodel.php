@@ -13,6 +13,7 @@ class JoinTasksModel extends Model {
   private $category;
   private $statusid;
   private $status;
+  private $priority;
   private $userid;
   private $userfirstname;
   private $userlastname;
@@ -64,6 +65,7 @@ class JoinTasksModel extends Model {
     $this->category = $array['category'];
     $this->statusid = $array['statusid'];
     $this->status = $array['status'];
+    $this->priority = $array['priority'];
     $this->userid = $array['userid'];
     $this->userfirstname = $array['userfirstname'];
     $this->userlastname = $array['userlastname'];
@@ -90,6 +92,7 @@ class JoinTasksModel extends Model {
     $array['category'] = $this->category;
     $array['statusid'] = $this->statusid;
     $array['status'] = $this->status;
+    $array['priority'] = $this->priority;
     $array['userid'] = $this->userid;
     $array['userfirstname'] = $this->userfirstname;
     $array['userlastname'] = $this->userlastname;
@@ -116,6 +119,7 @@ class JoinTasksModel extends Model {
   public function getCategory(){return $this->category;}
   public function getStatusId(){return $this->statusid;}
   public function getStatus(){return $this->status;}
+  public function getPriority(){return $this->priority;}
   public function getUserId(){return $this->userid;}
   public function getUserFirstName(){return $this->userfirstname;}
   public function getUserLastName(){return $this->userlastname;}

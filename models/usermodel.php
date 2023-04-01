@@ -188,36 +188,34 @@ class UserModel extends Model{
         }
     } */
 
-    function updateStatus($status, $iduser){
+    function updateStatus(){
         try{
-            $query = $this->db->connect()->prepare('UPDATE users SET status = :val WHERE id = :id');
-            $query->execute(['val' => $status, 'id' => $iduser]);
+            $query = $this->prepare('UPDATE users SET status = :val WHERE id = :id');
+            $query->execute([
+                'val' => $this->status,
+                'id' => $this->id
+            ]);
 
-            if($query->rowCount() > 0){
-                return true;
-            }else{
-                return false;
-            }
-        
+            return true;        
         }catch(PDOException $e){
             return NULL;
         }
     }
 
-    public function updateForAdmin($id, $role, $status, $username, $password, $email, $name, $lastname, $position, $phone){
+    public function updateForAdmin(){
         try{
             $query = $this->prepare('UPDATE users SET role_id = :role, status = :status, username = :username, password = :password, email = :email, firstname = :name, lastname = :lastname, position = :position, phone = :phone WHERE id = :id');
             $query->execute([
-                'id'        => $id,
-                'role'      => $role,
-                'status'    => $status,
-                'username'  => $username, 
-                'password'  => $password,
-                'email'     => $email,
-                'name'      => $name,
-                'lastname'  => $lastname,
-                'position'  => $position,
-                'phone'     => $phone
+                'id'        => $this->id,
+                'role'      => $this->role,
+                'status'    => $this->status,
+                'username'  => $this->username, 
+                'password'  => $this->password,
+                'email'     => $this->email,
+                'name'      => $this->name,
+                'lastname'  => $this->lastname,
+                'position'  => $this->position,
+                'phone'     => $this->phone
                 ]);
             return true;
         }catch(PDOException $e){
@@ -250,6 +248,60 @@ class UserModel extends Model{
         try{
             $query = $this->prepare('SELECT username FROM users WHERE username = :username');
             $query->execute( ['username' => $username]);
+            
+            if($query->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(PDOException $e){
+            echo $e;
+            return false;
+        }
+    }
+    
+    public function existsExcept($id, $username){
+        try{
+            $query = $this->prepare('SELECT id, username FROM users WHERE username = :username AND id != :id');
+            $query->execute([
+                'username' => $username,
+                'id' => $id
+            ]);
+            
+            if($query->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(PDOException $e){
+            echo $e;
+            return false;
+        }
+    }
+    
+    public function existsEmail($email){
+        try{
+            $query = $this->prepare('SELECT email FROM users WHERE email = :email');
+            $query->execute( ['email' => $email]);
+            
+            if($query->rowCount() > 0){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(PDOException $e){
+            echo $e;
+            return false;
+        }
+    }
+    
+    public function existsEmailExcept($id, $email){
+        try{
+            $query = $this->prepare('SELECT id, email FROM users WHERE email = :email AND id != :id');
+            $query->execute([
+                'email' => $email,
+                'id' => $id
+            ]);
             
             if($query->rowCount() > 0){
                 return true;

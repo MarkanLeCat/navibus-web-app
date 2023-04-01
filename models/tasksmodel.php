@@ -9,11 +9,28 @@ class TasksModel extends Model{
   private $lapseid;
   private $categoryid;
   private $statusid;
+  private $priority;
   private $userid;
   private $hourid;
   private $usercreated;
   private $createdat;
   private $updatedat;
+
+  class auto {
+    $marca;
+    $ruedas;
+    $color;
+    $puertas;
+    $modelo;
+
+    public function getMarca() {
+      return $this->marca;
+    }
+
+    public function setMarca($variable) {
+      $this->marca = $variable;
+    }
+  }
 
   public function setId($id){ $this->id = $id; }
   public function setTitle($title){ $this->title = $title; }
@@ -22,6 +39,7 @@ class TasksModel extends Model{
   public function setLapseId($lapseid){ $this->lapseid = $lapseid; }
   public function setCategoryId($categoryid){ $this->categoryid = $categoryid; }
   public function setStatusId($statusid){ $this->statusid = $statusid; }
+  public function setPriority($priority){ $this->priority = $priority; }
   public function setUserId($userid){ $this->userid = $userid; }
   public function setHourId($hourid){ $this->hourid = $hourid; }
   public function setUserCreated($usercreated){ $this->usercreated = $usercreated; }
@@ -35,6 +53,7 @@ class TasksModel extends Model{
   public function getLapseId(){ return $this->lapseid; }
   public function getCategoryId(){ return $this->categoryid; }
   public function getStatusId(){ return $this->statusid; }
+  public function getPriority(){ return $this->priority; }
   public function getUserId(){ return $this->userid; }
   public function getHourId(){ return $this->hourid; }
   public function getUserCreated(){ return $this->usercreated; }
@@ -47,14 +66,15 @@ class TasksModel extends Model{
 
   public function save(){
     try{
-      $query = $this->prepare('INSERT INTO tasks (title, description, ship_id, lapse_id, category_id, status_id, user_id, hour_id, user_created) VALUES(:title, :description, :ship, :lapse, :category, :status, :user, :hour, :usercreated)');
+      $query = $this->prepare('INSERT INTO tasks (title, description, ship_id, lapse_id, category_id, status_id, priority, user_id, hour_id, user_created) VALUES(:title, :description, :ship, :lapse, :category, :status, :priority, :user, :hour, :usercreated)');
       $query->execute([
         'title' => $this->title, 
         'description' => $this->description, 
         'ship' => $this->shipid, 
         'lapse' => $this->lapseid, 
         'category' => $this->categoryid, 
-        'status' => $this->statusid, 
+        'status' => $this->statusid,
+        'priority' => $this->priority,
         'user' => $this->userid, 
         'hour' => $this->hourid, 
         'usercreated' => $this->usercreated,
@@ -122,7 +142,7 @@ class TasksModel extends Model{
 
   public function update(){
     try{
-      $query = $this->prepare('UPDATE tasks SET title = :title, description = :description, ship_id = :ship, lapse_id = :lapse, category_id = :category, status_id = :status, user_id = :user, hour_id = :hour, user_created = :usercreated WHERE id = :id');
+      $query = $this->prepare('UPDATE tasks SET title = :title, description = :description, ship_id = :ship, lapse_id = :lapse, category_id = :category, status_id = :status, priority = :priority, user_id = :user, hour_id = :hour, user_created = :usercreated WHERE id = :id');
       $query->execute([
         'id' => $this->id,
         'title' => $this->title, 
@@ -131,6 +151,7 @@ class TasksModel extends Model{
         'lapse' => $this->lapseid, 
         'category' => $this->categoryid, 
         'status' => $this->statusid, 
+        'priority' => $this->priority,
         'user' => $this->userid, 
         'hour' => $this->hourid, 
         'usercreated' => $this->usercreated
@@ -151,6 +172,7 @@ class TasksModel extends Model{
     $this->lapseid = $array['lapse_id'];
     $this->categoryid = $array['category_id'];
     $this->statusid = $array['status_id'];
+    $this->priority = $array['priority'];
     $this->userid = $array['user_id'];
     $this->hourid = $array['hour_id'];
     $this->usercreated = $array['user_created'];

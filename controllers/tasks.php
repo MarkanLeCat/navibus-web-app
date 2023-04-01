@@ -18,7 +18,7 @@ class Tasks extends SessionController {
   //Método para crear una nueva tarea
   function createTask() {
     error_log("Tasks::createTask() ");
-    if(!$this->existPOST(['taskname', 'taskdescription', 'taskcategory', 'tasklapse', 'taskuser', 'taskhours'])){
+    if(!$this->existPOST(['taskname', 'taskdescription', 'taskpriority', 'taskcategory', 'tasklapse', 'taskuser', 'taskhours'])){
       error_log("Tasks::createTask() -> No se recibieron los datos de la tarea");
       $this->redirect('supervisor', ['error' => Errors::ERROR_SUPERVISOR_CREATETASK]);
       return;
@@ -26,6 +26,7 @@ class Tasks extends SessionController {
 
     $title = $this->getPost('taskname');
     $description = $this->getPost('taskdescription');
+    $priority = $this->getPost('taskpriority');
     $ship = 1;
     $lapse = $this->getPost('tasklapse');
     $category = $this->getPost('taskcategory');
@@ -34,7 +35,7 @@ class Tasks extends SessionController {
     $status = 1;
     $usercreated = $this->user->getId();
 
-    if(empty($title) || empty($description) || empty($lapse) || empty($category) || empty($user) || empty($hours)){
+    if(empty($priority) || empty($title) || empty($description) || empty($lapse) || empty($category) || empty($user) || empty($hours)){
       error_log("Tasks::createTask() -> No se recibieron los datos de la tarea");
       $this->redirect('supervisor', ['error' => Errors::ERROR_SUPERVISOR_CREATETASK_EMPTY]);
       return;
@@ -56,6 +57,7 @@ class Tasks extends SessionController {
 
     $this->model->setTitle($title);
     $this->model->setDescription($description);
+    $this->model->setPriority($priority);
     $this->model->setShipId($ship);
     $this->model->setLapseId($lapse);
     $this->model->setCategoryId($category);
@@ -79,7 +81,7 @@ class Tasks extends SessionController {
   //Método para actualizar los datos de una tarea
   function updateTask(){
     error_log("Tasks::updateTask() ");
-    if(!$this->existPOST(['taskname', 'taskdescription', 'taskcategory', 'tasklapse', 'taskuser', 'taskhours', 'status', 'taskid'])){
+    if(!$this->existPOST(['taskname', 'taskdescription', "taskpriority", 'taskcategory', 'tasklapse', 'taskuser', 'taskhours', 'status', 'taskid'])){
       error_log("Tasks::updateTask() -> No se recibieron los datos de la tarea");
       $this->redirect('supervisor', ['error' => Errors::ERROR_SUPERVISOR_UPDATETASK]);
       return;
@@ -89,6 +91,7 @@ class Tasks extends SessionController {
     $title = $this->getPost('taskname');
     $description = $this->getPost('taskdescription');
     $status = $this->getPost('status');
+    $priority = $this->getPost('taskpriority');
     $ship = 1;
     $lapse = $this->getPost('tasklapse');
     $category = $this->getPost('taskcategory');
@@ -97,7 +100,7 @@ class Tasks extends SessionController {
     $usercreated = $this->user->getId();
 
 
-    if(empty($title) || empty($description) || empty($lapse) || empty($category) || empty($user) || empty($hours) || empty($status) || empty($id)){
+    if(empty($priority) || empty($title) || empty($description) || empty($lapse) || empty($category) || empty($user) || empty($hours) || empty($status) || empty($id)){
       error_log("Tasks::updateTask() -> No se recibieron los datos de la tarea");
       $this->redirect('supervisor', ['error' => Errors::ERROR_SUPERVISOR_UPDATETASK_EMPTY]);
       return;
@@ -121,6 +124,7 @@ class Tasks extends SessionController {
     $this->model->setTitle($title);
     $this->model->setDescription($description);
     $this->model->setShipId($ship);
+    $this->model->setPriority($priority);
     $this->model->setLapseId($lapse);
     $this->model->setCategoryId($category);
     $this->model->setUserId($user);

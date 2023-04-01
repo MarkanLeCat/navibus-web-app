@@ -123,6 +123,10 @@
                                                                                             <td><?php echo $task->getStatus(); ?></td>
                                                                                         </tr>
                                                                                         <tr>
+                                                                                            <td>Prioridad:</td>
+                                                                                            <td><?php echo $task->getPriority(); ?></td>
+                                                                                        </tr>
+                                                                                        <tr>
                                                                                             <td>Lapso:</td>
                                                                                             <td><?php echo $task->getLapse(); ?></td>
                                                                                         </tr>
@@ -218,6 +222,10 @@
                                                                                         <tr>
                                                                                             <td>Estado:</td>
                                                                                             <td><?php echo $task->getStatus(); ?></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Prioridad:</td>
+                                                                                            <td><?php echo $task->getPriority(); ?></td>
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td>Lapso:</td>
@@ -317,6 +325,10 @@
                                                                                             <td><?php echo $task->getStatus(); ?></td>
                                                                                         </tr>
                                                                                         <tr>
+                                                                                            <td>Prioridad:</td>
+                                                                                            <td><?php echo $task->getPriority(); ?></td>
+                                                                                        </tr>
+                                                                                        <tr>
                                                                                             <td>Lapso:</td>
                                                                                             <td><?php echo $task->getLapse(); ?></td>
                                                                                         </tr>
@@ -382,16 +394,24 @@
                                                 <div class="modal fade text-left" role="dialog" tabindex="-1" id="taskinfo-<?php echo $task->getTaskId(); ?>" aria-labelledby="myModalLabel1" aria-hidden="true">
                                                     <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                                                         <div class="modal-content">
+
+                                                            <!-- Header del modal -->
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="myModalLabel-4"><?php echo $task->getTitle(); ?></h5><button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close"><i data-feather="x"></i></button><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
+
+                                                            <!-- Body del modal -->
                                                             <div class="modal-body modal-task_body">
                                                                 <div class="container-fluid">
                                                                     <div class="row">
+
+                                                                        <!-- Descripción de la tarea -->
                                                                         <div class="col-12 modal-task_description">
                                                                             <h6>Descripción</h6>
                                                                             <p><?php echo $task->getDescription(); ?></p>
                                                                         </div>
+
+                                                                        <!-- Tabla con los detalles de la tarea -->
                                                                         <div class="col-12 modal-task_details">
                                                                             <div class="table-responsive">
                                                                                 <table class="table mb-0">
@@ -412,6 +432,10 @@
                                                                                         <tr>
                                                                                             <td>Estado:</td>
                                                                                             <td><?php echo $task->getStatus(); ?></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Prioridad:</td>
+                                                                                            <td><?php echo $task->getPriority(); ?></td>
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td>Lapso:</td>

@@ -105,6 +105,20 @@
                                                         </div>
                                                     </div>
 
+                                                    <!-- Input de la prioridad de la tarea -->
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="taskPriority"><strong>Prioridad</strong></label>
+                                                        <div class="form-group">
+                                                            <select class="form-select" id="taskPriority" name="taskpriority" required="">
+                                                                <option value="" selected="">Seleccione la prioridad</option>
+                                                                <option value="Mínima">Mínima</option>
+                                                                <option value="Media">Media</option>
+                                                                <option value="Elevada">Elevada</option>
+                                                                <option value="Urgente">Urgente</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
                                                     <!-- Input de la categoría de la tarea -->
                                                     <div class="mb-3">
                                                         <label class="form-label" for="taskCategory"><strong>Categoría</strong></label>
@@ -248,6 +262,10 @@
                                                                                             <td><?php echo $task->getStatus(); ?></td>
                                                                                         </tr>
                                                                                         <tr>
+                                                                                            <td>Prioridad:</td>
+                                                                                            <td><?php echo $task->getPriority(); ?></td>
+                                                                                        </tr>
+                                                                                        <tr>
                                                                                             <td>Lapso:</td>
                                                                                             <td><?php echo $task->getLapse(); ?></td>
                                                                                         </tr>
@@ -333,6 +351,20 @@
                                                                         <div class="form-group position-relative has-icon-left">
                                                                             <textarea class="form-control" id="taskDescription-<?php echo $task->getTaskId(); ?>" name="taskdescription" Value="<?php echo $task->getDescription(); ?>" autocomplete="off" spellcheck="true" required="" maxlength="200"><?php echo $task->getDescription(); ?></textarea>
                                                                             <div class="form-control-icon"><i class="bi bi-file-text"></i></div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Input de la prioridad de la tarea -->
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label" for="taskPriority-<?php echo $task->getTaskId(); ?>"><strong>Prioridad</strong></label>
+                                                                        <div class="form-group">
+                                                                            <select class="form-select" id="taskPriority-<?php echo $task->getTaskId(); ?>" name="taskpriority" required="">
+                                                                                <option value="">Seleccione la prioridad</option>
+                                                                                <option value="Mínima" <?php if($task->getPriority() === 'Mínima') echo 'selected'; ?>>Mínima</option>
+                                                                                <option value="Media" <?php if($task->getPriority() === 'Media') echo 'selected'; ?>>Media</option>
+                                                                                <option value="Elevada" <?php if($task->getPriority() === 'Elevada') echo 'selected'; ?>>Elevada</option>
+                                                                                <option value="Urgente" <?php if($task->getPriority() === 'Urgente') echo 'selected'; ?>>Urgente</option>
+                                                                            </select>
                                                                         </div>
                                                                     </div>
 
@@ -478,6 +510,10 @@
                                                                                             <td><?php echo $task->getStatus(); ?></td>
                                                                                         </tr>
                                                                                         <tr>
+                                                                                            <td>Prioridad:</td>
+                                                                                            <td><?php echo $task->getPriority(); ?></td>
+                                                                                        </tr>
+                                                                                        <tr>
                                                                                             <td>Lapso:</td>
                                                                                             <td><?php echo $task->getLapse(); ?></td>
                                                                                         </tr>
@@ -563,6 +599,20 @@
                                                                         <div class="form-group position-relative has-icon-left">
                                                                             <textarea class="form-control" id="taskDescription-<?php echo $task->getTaskId(); ?>" name="taskdescription" Value="<?php echo $task->getDescription(); ?>" autocomplete="off" spellcheck="true" required="" maxlength="200"><?php echo $task->getDescription(); ?></textarea>
                                                                             <div class="form-control-icon"><i class="bi bi-file-text"></i></div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Input de la prioridad de la tarea -->
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label" for="taskPriority-<?php echo $task->getTaskId(); ?>"><strong>Prioridad</strong></label>
+                                                                        <div class="form-group">
+                                                                            <select class="form-select" id="taskPriority-<?php echo $task->getTaskId(); ?>" name="taskpriority" required="">
+                                                                                <option value="">Seleccione la prioridad</option>
+                                                                                <option value="Mínima" <?php if($task->getPriority() === 'Mínima') echo 'selected'; ?>>Mínima</option>
+                                                                                <option value="Media" <?php if($task->getPriority() === 'Media') echo 'selected'; ?>>Media</option>
+                                                                                <option value="Elevada" <?php if($task->getPriority() === 'Elevada') echo 'selected'; ?>>Elevada</option>
+                                                                                <option value="Urgente" <?php if($task->getPriority() === 'Urgente') echo 'selected'; ?>>Urgente</option>
+                                                                            </select>
                                                                         </div>
                                                                     </div>
 
@@ -708,6 +758,10 @@
                                                                                             <td><?php echo $task->getStatus(); ?></td>
                                                                                         </tr>
                                                                                         <tr>
+                                                                                            <td>Prioridad:</td>
+                                                                                            <td><?php echo $task->getPriority(); ?></td>
+                                                                                        </tr>
+                                                                                        <tr>
                                                                                             <td>Lapso:</td>
                                                                                             <td><?php echo $task->getLapse(); ?></td>
                                                                                         </tr>
@@ -793,6 +847,20 @@
                                                                         <div class="form-group position-relative has-icon-left">
                                                                             <textarea class="form-control" id="taskDescription-<?php echo $task->getTaskId(); ?>" name="taskdescription" Value="<?php echo $task->getDescription(); ?>" autocomplete="off" spellcheck="true" required="" maxlength="200"><?php echo $task->getDescription(); ?></textarea>
                                                                             <div class="form-control-icon"><i class="bi bi-file-text"></i></div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Input de la prioridad de la tarea -->
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label" for="taskPriority-<?php echo $task->getTaskId(); ?>"><strong>Prioridad</strong></label>
+                                                                        <div class="form-group">
+                                                                            <select class="form-select" id="taskPriority-<?php echo $task->getTaskId(); ?>" name="taskpriority" required="">
+                                                                                <option value="">Seleccione la prioridad</option>
+                                                                                <option value="Mínima" <?php if($task->getPriority() === 'Mínima') echo 'selected'; ?>>Mínima</option>
+                                                                                <option value="Media" <?php if($task->getPriority() === 'Media') echo 'selected'; ?>>Media</option>
+                                                                                <option value="Elevada" <?php if($task->getPriority() === 'Elevada') echo 'selected'; ?>>Elevada</option>
+                                                                                <option value="Urgente" <?php if($task->getPriority() === 'Urgente') echo 'selected'; ?>>Urgente</option>
+                                                                            </select>
                                                                         </div>
                                                                     </div>
 
@@ -938,6 +1006,10 @@
                                                                                             <td><?php echo $task->getStatus(); ?></td>
                                                                                         </tr>
                                                                                         <tr>
+                                                                                            <td>Prioridad:</td>
+                                                                                            <td><?php echo $task->getPriority(); ?></td>
+                                                                                        </tr>
+                                                                                        <tr>
                                                                                             <td>Lapso:</td>
                                                                                             <td><?php echo $task->getLapse(); ?></td>
                                                                                         </tr>
@@ -1023,6 +1095,20 @@
                                                                         <div class="form-group position-relative has-icon-left">
                                                                             <textarea class="form-control" id="taskDescription-<?php echo $task->getTaskId(); ?>" name="taskdescription" Value="<?php echo $task->getDescription(); ?>" autocomplete="off" spellcheck="true" required="" maxlength="200"><?php echo $task->getDescription(); ?></textarea>
                                                                             <div class="form-control-icon"><i class="bi bi-file-text"></i></div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Input de la prioridad de la tarea -->
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label" for="taskPriority-<?php echo $task->getTaskId(); ?>"><strong>Prioridad</strong></label>
+                                                                        <div class="form-group">
+                                                                            <select class="form-select" id="taskPriority-<?php echo $task->getTaskId(); ?>" name="taskpriority" required="">
+                                                                                <option value="">Seleccione la prioridad</option>
+                                                                                <option value="Mínima" <?php if($task->getPriority() === 'Mínima') echo 'selected'; ?>>Mínima</option>
+                                                                                <option value="Media" <?php if($task->getPriority() === 'Media') echo 'selected'; ?>>Media</option>
+                                                                                <option value="Elevada" <?php if($task->getPriority() === 'Elevada') echo 'selected'; ?>>Elevada</option>
+                                                                                <option value="Urgente" <?php if($task->getPriority() === 'Urgente') echo 'selected'; ?>>Urgente</option>
+                                                                            </select>
                                                                         </div>
                                                                     </div>
 
